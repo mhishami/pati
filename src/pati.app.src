@@ -1,0 +1,20 @@
+{application, pati, [
+    {description, "PATI Registration App"},
+    {vsn, "0.1"},
+    {modules, []},
+    {registered, [pati_sup]},
+    {applications, [
+                    kernel,
+                    stdlib,
+                    tuah, 
+                    cowboy,
+                    erlydtl,
+                    jsx,
+                    lager,
+                    cowlib,
+                    ranch,
+                    mongodb,
+                    bson                    
+    ]},
+    {mod, {pati_app, []}}
+]}.

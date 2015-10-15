@@ -1,0 +1,232 @@
+{% extends "adm.dtl" %}
+
+{% block adm_content %}
+
+    <div class="row">
+      
+
+      <!-- Form Name -->
+      <h2 class="page-header">Worker Details</h2>
+
+      <!-- error handling -->
+      {% if error %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> {{ error }}.
+      </div>      
+      {% endif %}
+
+      <div>
+
+        <form class="form-horizontal">
+        <fieldset>
+
+        <h3 class="page-header">Company</h3>
+                <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="natiionality">Employer</label>
+          <div class="col-md-4">
+            <select id="natiionality" name="natiionality" class="form-control">
+              <option value="--">--</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Nepal">Nepal</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 class="page-header">Personal Details</h3>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Name</label>  
+          <div class="col-md-4">
+          <input id="name" name="name" type="text" placeholder="Full Name" class="form-control input-md" required="">
+          <span class="help-block">Enter your full name</span>  
+          </div>
+        </div>
+
+        <!-- Multiple Radios -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="gender">Gender</label>
+          <div class="col-md-4">
+          <div class="radio">
+            <label for="gender-0">
+              <input type="radio" name="gender" id="gender-0" value="male" checked="checked">
+              Male
+            </label>
+          </div>
+          <div class="radio">
+            <label for="gender-1">
+              <input type="radio" name="gender" id="gender-1" value="female">
+              Female
+            </label>
+          </div>
+          </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="natiionality">Nationality</label>
+          <div class="col-md-4">
+            <select id="natiionality" name="natiionality" class="form-control">
+              <option value="--">--</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Nepal">Nepal</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="birthdate">Birthdate</label>  
+          <div class="col-md-4">
+          <input id="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" required="">
+          <span class="help-block">Enter date in DD/MM/YYYY format</span>  
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="address">Address</label>
+          <div class="col-md-4">                     
+            <textarea class="form-control" id="address" name="address"></textarea>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="postcode">Postcode</label>  
+          <div class="col-md-4">
+          <input id="postcode" name="postcode" type="text" placeholder="Postcode" class="form-control input-md" required="">
+          <span class="help-block">Enter postcode</span>  
+          </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="state">State</label>
+          <div class="col-md-4">
+            <select id="state" name="state" class="form-control">
+              <option value="--">--</option>
+              <option value="Johor">Johor</option>
+              <option value="Kedah">Kedah</option>
+              <option value="Kelantan">Kelantan</option>
+              <option value="Melaka">Melaka</option>
+              <option value="Negeri Sembilan">Negeri Sembilan</option>
+              <option value="Pahang">Pahang</option>
+              <option value="Perak">Perak</option>
+              <option value="Perlis">Perlis</option>
+              <option value="Pulau Pinang">Pulau Pinang</option>
+              <option value="Sabah">Sabah</option>
+              <option value="Sarawak">Sarawak</option>
+              <option value="Selangor">Selangor</option>
+              <option value="Terengganu">Terengganu</option>
+              <option value="WP Kuala Lumpur">WP Kuala Lumpur</option>
+              <option value="WP Labuan">WP Labuan</option>
+              <option value="WP Putrajaya">WP Putrajaya</option>
+            </select>
+          </div>
+        </div>        
+
+        <h3 class="page-header">Passport Details</h3>
+        <!-- Multiple Radios -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="passport">Have Passport?</label>
+          <div class="col-md-4">
+          <div class="radio">
+            <label for="passport-0">
+              <input type="radio" name="passport" id="passport-0" value="no" checked="checked">
+              No
+            </label>
+          </div>
+          <div class="radio">
+            <label for="passport-1">
+              <input type="radio" name="passport" id="passport-1" value="yes">
+              Yes
+            </label>
+          </div>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="passport_no">Passport No</label>  
+          <div class="col-md-4">
+          <input id="passport_no" name="passport_no" type="text" placeholder="Passport No" class="form-control input-md">
+          <span class="help-block">Enter your passport no</span>  
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="passport_exp">Passport Expiry Date</label>  
+          <div class="col-md-4">
+          <input id="passport_exp" name="passport_exp" type="text" placeholder="DD/MM/YYYY" class="form-control input-md">
+          <span class="help-block">Enter your passport expiry in DD/MM/YYYY</span>  
+          </div>
+        </div>
+
+        <h3 class="page-header">Sector Details</h3>
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="sector">Sector</label>
+          <div class="col-md-4">
+          <div class="checkbox">
+            <label for="sector-0">
+              <input type="checkbox" name="sector" id="sector-0" value="Manufacturing">
+              Manufacturing
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="sector-1">
+              <input type="checkbox" name="sector" id="sector-1" value="Agriculture">
+              Agriculture
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="sector-2">
+              <input type="checkbox" name="sector" id="sector-2" value="Services">
+              Services
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="sector-3">
+              <input type="checkbox" name="sector" id="sector-3" value="Construction">
+              Construction
+            </label>
+          </div>
+          <div class="checkbox">
+            <label for="sector-4">
+              <input type="checkbox" name="sector" id="sector-4" value="Plantation">
+              Plantation
+            </label>
+          </div>
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="sub_sector">Sub Sector</label>  
+          <div class="col-md-4">
+          <input id="sub_sector" name="sub_sector" type="text" placeholder="Sub Sector" class="form-control input-md">
+          <span class="help-block">Enter the sub-sector</span>  
+          </div>
+        </div>
+
+        <!-- Button (Double) -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="submit"></label>
+          <div class="col-md-8">
+            <button id="submit" name="submit" class="btn btn-primary">Create</button>
+            <button id="cancel" name="cancel" class="btn btn-default">Cancel</button>
+          </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+      </div>
+    </div>
+
+{% endblock %}

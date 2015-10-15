@@ -1,0 +1,86 @@
+{% extends "adm.dtl" %}
+
+{% block adm_content %}
+
+    <div class="row">
+      
+
+      <!-- error handling -->
+      {% if error %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> {{ error }}.
+      </div>      
+      {% endif %}
+
+      <div>
+        <form class="form-horizontal" method="post" action="/adm/user/new">
+          <fieldset>
+            <!-- Form Name -->
+            <h2 class="page-header">Register User</h2>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="name">Name</label>  
+              <div class="col-md-4">
+              <input id="name" name="name" type="text" placeholder="Full Name" class="form-control input-md" required="">
+              <span class="help-block">Enter your full name</span>  
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="email">Email</label>  
+              <div class="col-md-4">
+              <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
+              <span class="help-block">Entr your email address</span>  
+              </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="role">User Role</label>
+              <div class="col-md-4">
+                <select id="role" name="role" class="form-control">
+                  <option value="--">--</option>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+
+            <h3 class="page-header">Security Password</h3>
+            <!-- Password input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="password">Password</label>
+              <div class="col-md-4">
+                <input id="password" name="password" type="password" placeholder="Enter password" class="form-control input-md" required="">
+                <span class="help-block">Enter password</span>
+              </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="password2">Password (Again)</label>
+              <div class="col-md-4">
+                <input id="password2" name="password2" type="password" placeholder="Enter your password again" class="form-control input-md" required="">
+                <span class="help-block">Enter the same password again</span>
+              </div>
+            </div>
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="submit"></label>
+              <div class="col-md-8">
+                <button type="submit" id="submit" name="submit" class="btn btn-primary">Create</button>
+                <button type="submit" id="cancel" name="cancel" onclick="window.location.href='/adm/users'; return false;" class="btn btn-default">Cancel</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+
+
+      </div>
+    </div>
+
+{% endblock %}

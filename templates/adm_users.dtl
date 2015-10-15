@@ -1,0 +1,48 @@
+{% extends "adm.dtl" %}
+
+{% block adm_content %}
+
+      <h1 class="page-header">Users</h1>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th></th>
+            <tr>
+          </thead>
+          <tbody>
+            {% for u in users %}
+            <tr>
+              <td>{{ u.name }}</td>
+              <td>{{ u.email }}</td>
+              <td>{{ u.role }}</td>
+              <td>
+                <div class="container-fluid pull-right">
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <form method="post" action="/adm/user/edit">
+                        <input type="hidden" name="id" value="{{ u.email }}">
+                        <button type="submit" class="btn btn-sm btn-default">Edit</button>
+                      </form>
+                    </div>
+                    <div class=" col-xs-4">
+                      <form style="float: left" method="post" action="/adm/user/delete">
+                        <input type="hidden" name="id" value="{{ u.email }}">
+                        <button type="submit" class="btn btn-sm btn-danger pull-right">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            <tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <a href="/adm/user/new" class="btn btn-primary">New User</a>
+
+
+{% endblock %}
