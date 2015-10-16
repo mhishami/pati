@@ -1,4 +1,6 @@
 -module(pati_app).
+-author ('Hisham Ismail <mhishami@gmail.com').
+
 -behaviour(application).
 
 -export([start/2]).

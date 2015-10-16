@@ -22,6 +22,7 @@
               <td>
                 <div class="container-fluid pull-right">
                   <div class="row">
+                    <a class="btn btn-sm btn-default" href="/pdf/user?id={{ u.email }}">PDF</a>
                     <div class="col-xs-4">
                       <form method="post" action="/adm/user/edit">
                         <input type="hidden" name="id" value="{{ u.email }}">

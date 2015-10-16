@@ -1,4 +1,6 @@
 -module(home_controller).
+-author ('Hisham Ismail <mhishami@gmail.com').
+
 -export ([handle_request/5]).
 -export ([before_filter/1]).
 

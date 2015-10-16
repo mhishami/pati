@@ -14,7 +14,7 @@
                     cowlib,
                     ranch,
                     mongodb,
-                    bson                    
+                    bson
     ]},
     {mod, {pati_app, []}}
 ]}.

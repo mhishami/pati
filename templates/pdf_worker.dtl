@@ -1,0 +1,288 @@
+{% extends "pdf.dtl" %}
+
+{% block content %}
+
+  <div class="row" style="background-color: #e0e0eb;">
+    <h4 style="padding-left: 10px">A) MAKLUMAT PERIBADI WARGA ASING</h4>
+    <i style="padding-left: 30px;">(Particulars of Immigrant)</i>
+  </div>
+
+  <div class="row form-group" style="margin-top: 10px;">
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Nama</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control input-md" value="{{ name }}">
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Jantina</label>
+      <div class="col-xs-9">
+        <input type="text" class="no-control" size="2" value="{{ day }}"> Lelaki&nbsp;
+        <input type="text" class="no-control" size="2" value="{{ day }}"> Perempuan&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Warganegara</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control input-md" value="{{ nationality }}">
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Tarikh Lahir</label>
+      <div class="col-xs-9">
+        <input type="text" class="no-control" size="4" value="{{ dob_dd }}">/hari&nbsp;
+        <input type="text" class="no-control" size="4" value="{{ dob_mm }}">/bulan&nbsp;
+        <input type="text" class="no-control" size="4" value="{{ dob_yy }}">/tahun&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Pasport</label>
+      <div class="col-xs-9">
+        <input type="text" class="no-control" size="3" value="{{ pass_yes }}"> Ada&nbsp;
+        <input type="text" class="no-control" size="3" value="{{ pass_no }}"> Tiada&nbsp;        
+      </div>
+    </div>
+    <div class="col-xs-6">
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Pasport No.</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control input-md" value="{{ passport_no }}">
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <label class="col-xs-5 control-label">Tarikh Tamat Pasport</label>
+      <div class="col-xs-7">
+        <input type="text" class="form-control input-md" value="{{ passport_exp }}">
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <label class="col-xs-5 control-label">Tarikh Tamat Permit</label>
+      <div class="col-xs-7">
+        <input type="text" class="form-control input-md" value="{{ permit_exp }}">
+      </div>
+    </div>
+    <div class="col-xs-6">
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Alamat</label>
+      <div class="col-xs-9">
+        <textarea class="form-control" rows="5">{{ address }}</textarea>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="col-xs-6">
+        <div class="row">
+          <label class="col-xs-3 control-label">Negeri</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control input-md" value="{{ state }}">
+          </div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+          <label class="col-xs-3 control-label">Poskod</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control input-md" value="{{ postcode }}">
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <img src="http://placehold.it/200x200&text=Image Here" />.
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-2">
+      <label class="col-xs-2 control-label">Sektor</label>
+    </div>
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-5">
+          <input type="text" class="no-control" size="2" value="{{ sect_mfg }}"> Perkilangan <i>(Manufacturing)</i>
+        </div>
+        <div class="col-xs-5">
+          <input type="text" class="no-control" size="2" value="{{ sect_con }}"> Pembinaan <i>(Construction)</i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-2">      
+    </div>
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-5">
+          <input type="text" class="no-control" size="2" value="{{ sect_agr }}"> Pertanian <i>(Agriculture)</i>
+        </div>
+        <div class="col-xs-5">
+          <input type="text" class="no-control" size="2" value="{{ sect_plt }}"> Perladangan <i>(Plantation)</i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-2">      
+    </div>
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-5">
+          <input type="text" class="no-control" size="2" value="{{ sect_svc }}"> Perkhidmatan <i>(Services)</i>
+        </div>
+        <div class="col-xs-5">
+          <label class="col-xs-5 control-label">Sub-Sektor</label>
+          <div class="col-xs-7">
+            <input type="text" class="form-control input-md" value="{{ state }}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="background-color: #e0e0eb;">
+    <h4 style="padding-left: 10px">A) MAKLUMAT MAJIKAN</h4>
+    <i style="padding-left: 30px;">(Particulars of Employer)</i>
+  </div>
+
+  <div class="row form-group" style="margin-top: 10px;">
+    <div class="col-xs-6">
+      <label class="col-xs-5 control-label">Jenis Majikan</label>
+    </div>
+    <div class="col-xs-6">
+      <input type="text" class="no-control" size="2" value="{{ co_sdn }}"> Sdn Bhd&nbsp;
+      <input type="text" class="no-control" size="2" value="{{ co_bhd }}"> Bhd&nbsp;
+      <input type="text" class="no-control" size="2" value="{{ co_ent }}"> Enterprise&nbsp;
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Nama Majikan</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_name }}">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">No. Pendaftaran Syarikat</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_regno }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <label class="col-xs-3 control-label">Alamat Syarikat</label>
+      <div class="col-xs-9">
+        <textarea class="form-control" rows="5">{{ address }}</textarea>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Negeri</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ state }}">
+        </div>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <label class="col-xs-3 control-label">Poskod</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ postcode }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Nama Pengarah</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_name }}">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Telefon No.</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_regno }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Nama Pengarah Kedua</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_name }}">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Telefon No.</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_regno }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">No Telefon Syarikat</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_name }}">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="row">
+        <label class="col-xs-3 control-label">Alamat Email</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control input-md" value="{{ co_regno }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <p><i>For Office Use Only:</i></p>
+  <div class="row form-group">
+    <div class="col-xs-4">
+      Agent Code:
+    </div>
+    <div class="col-xs-4">
+      Date:
+    </div>
+    <div class="col-xs-4">
+      Company Stamp:
+    </div>
+  </div>
+{% endblock %}

@@ -1,8 +1,6 @@
--module(co_controller).
--author ('Hisham Ismail <mhishami@gmail.com').
-
--export ([handle_request/5]).
--export ([before_filter/1]).
+-module(worker_controller).
+-export([handle_request/5]).
+-export([before_filter/1]).
 
 -include("pati.hrl").
 

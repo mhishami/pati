@@ -1,5 +1,7 @@
 %% adm_controller.erl
 -module (adm_controller).
+-author ('Hisham Ismail <mhishami@gmail.com').
+
 -export ([handle_request/5]).
 -export ([before_filter/1]).
 
@@ -127,6 +129,27 @@ handle_request(<<"POST">>, <<"user">>, [<<"update">>], Params, _) ->
             mongo_worker:update(?DB_USER, User2),
             {redirect, <<"/adm/users">>}
     end;
+
+handle_request(<<"POST">>, <<"user">>, [<<"pdf">>], Params, _) ->
+    ?DEBUG("Generating eg_pdf, pwd= ~p~n", [os:cmd("pwd")]),
+    catch os:cmd("mkdir exports"),
+
+    {ok, PostVals} = maps:find(<<"qs_body">>, Params),
+    ?DEBUG("PostVals= ~p~n", [PostVals]),
+    Id = proplists:get_value(<<"id">>, PostVals),
+
+    User = get_user(Params),
+    {ok, Data} = mongo_worker:find_one(?DB_USER, {<<"email">>, Id}),
+    
+    ?DEBUG("User data= ~p~n", [Data]),
+    Filename = "/Users/hisham/Downloads/erlguten_test4.pdf",
+    
+    {render, <<"adm_user_eg_pdf">>, [
+        {user, User},
+        {menu_users, <<"active">>},
+        {data, Data},
+        {file, Filename}
+    ]};
 
 handle_request(<<"GET">>, <<"cos">>, _, Params, _) ->
     User = get_user(Params),
@@ -264,6 +287,3 @@ get_user(Params) ->
         {ok, User} -> User;
         _          -> undefined
     end.
-
-
-

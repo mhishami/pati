@@ -1,4 +1,6 @@
 -module(pati_sup).
+-author ('Hisham Ismail <mhishami@gmail.com').
+
 -behaviour(supervisor).
 
 -export([start_link/0]).
