@@ -15,7 +15,7 @@
       {% endif %}
 
 
-      <form class="form-horizontal" method="post" action="/adm/user/update">
+      <form class="form-horizontal" method="post" action="{{ action }}">
         <fieldset>
           <!-- Form Name -->
           <h2 class="page-header">Update User</h2>
@@ -39,6 +39,7 @@
           </div>
 
           <!-- Text input-->
+          {% block role %}
           <div class="form-group">
             <label class="col-md-4 control-label" for="email">User Role</label>  
             <div class="col-md-4">
@@ -46,8 +47,9 @@
             <span class="help-block">Your user role</span>  
             </div>
           </div>
+          {% endblock %}
 
-          <h2 class="page-header">Change Password</h2>
+          <h2 class="page-header">Password</h2>
           <!-- Password input-->
           <div class="form-group">
             <label class="col-md-4 control-label" for="password">Password</label>
@@ -70,7 +72,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="submit"></label>
             <div class="col-md-8">
-              <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+              <button type="submit" id="submit" name="submit" class="btn btn-primary">{% block button %}{% endblock %}</button>
               <button type="submit" id="cancel" name="cancel" onclick="window.location.href='/adm/users'; return false;" class="btn btn-default">Cancel</button>
             </div>
           </div>

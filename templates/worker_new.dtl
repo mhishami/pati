@@ -1,0 +1,5 @@
+{% extends "worker.dtl" %}
+
+{% block action %}/worker/new{% endblock %}
+{% block button %}Create{% endblock %}
+

@@ -1,0 +1,4 @@
+{% extends "co.dtl" %}
+
+{% block action %}/co/update{% endblock %}
+{% block button %} Update {% endblock %}

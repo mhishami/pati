@@ -1,5 +1,0 @@
-{% extends "adm_user.dtl" %}
-
-{% block action %}/adm/user/update{% endblock %}
-{% block button %}Update{% endblock %}
-

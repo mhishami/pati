@@ -1,4 +1,0 @@
-{% extends "adm_co.dtl" %}
-
-{% block action %}/adm/co/new{% endblock %}
-{% block button %} Create {% endblock %}

@@ -20,20 +20,10 @@
               <td>{{ c.type }}</td>
               <td>{{ c.regno }}</td>
               <td>
-                <div class="container-fluid">
+                <div class="container-fluid pull-right">
                   <div class="row">
-                    <div class="col-md-2 col-md-offset-8">
-                      <form method="post" action="/adm/co/edit">
-                        <input type="hidden" name="id" value="{{ c.regno }}">
-                        <button type="submit" class="btn btn-sm btn-default">Edit</button>
-                      </form>
-                    </div>
-                    <div class=" col-md-2">
-                      <form style="float: left" method="post" action="/adm/co/delete">
-                        <input type="hidden" name="id" value="{{ c.regno }}">
-                        <button type="submit" class="btn btn-sm btn-danger pull-right">Delete</button>
-                      </form>
-                    </div>
+                    <a class="btn btn-sm btn-success" href="/co/edit?id={{ c.regno }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/co/delete?id={{ c.regno }}">Delete</a>
                   </div>
                 </div>
               </td>
@@ -42,7 +32,7 @@
           </tbody>
         </table>
       </div>
-      <a href="/adm/co/new" class="btn btn-primary">New Company</a>
+      <a href="/co/new" class="btn btn-primary">New Company</a>
 
 
 {% endblock %}

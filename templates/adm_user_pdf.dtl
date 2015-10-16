@@ -1,7 +1,0 @@
-{% extends "adm.dtl" %}
-
-{% block adm_content %}
-
-  <embed src="{{ file }}" width="800px" height="2100px">
-
-{% endblock %}

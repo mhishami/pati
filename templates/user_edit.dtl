@@ -1,0 +1,7 @@
+{% extends "user.dtl" %}
+
+{% block action %}/user/update{% endblock %}
+{% block button %}Update{% endblock %}
+
+{% block role %}
+{% endblock %}

@@ -23,18 +23,8 @@
                 <div class="container-fluid pull-right">
                   <div class="row">
                     <a class="btn btn-sm btn-default" href="/pdf/user?id={{ u.email }}">PDF</a>
-                    <div class="col-xs-4">
-                      <form method="post" action="/adm/user/edit">
-                        <input type="hidden" name="id" value="{{ u.email }}">
-                        <button type="submit" class="btn btn-sm btn-default">Edit</button>
-                      </form>
-                    </div>
-                    <div class=" col-xs-4">
-                      <form style="float: left" method="post" action="/adm/user/delete">
-                        <input type="hidden" name="id" value="{{ u.email }}">
-                        <button type="submit" class="btn btn-sm btn-danger pull-right">Delete</button>
-                      </form>
-                    </div>
+                    <a class="btn btn-sm btn-success" href="/user/edit?id={{ u.email }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/user/delete?id={{ u.email }}">Delete</a>
                   </div>
                 </div>
               </td>
@@ -43,7 +33,7 @@
           </tbody>
         </table>
       </div>
-      <a href="/adm/user/new" class="btn btn-primary">New User</a>
+      <a href="/user/new" class="btn btn-primary">New User</a>
 
 
 {% endblock %}

@@ -18,19 +18,19 @@
 
       <div>
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post" action="{% block action%}{% endblock %}">
         <fieldset>
 
-        <h3 class="page-header">Company</h3>
+        <h3 class="page-header">Employer</h3>
                 <!-- Select Basic -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="natiionality">Employer</label>
+          <label class="col-md-4 control-label" for="employer">Employer</label>
           <div class="col-md-4">
-            <select id="natiionality" name="natiionality" class="form-control">
+            <select id="employer" name="employer" class="form-control">
               <option value="--">--</option>
-              <option value="Bangladesh">Bangladesh</option>
-              <option value="Indonesia">Indonesia</option>
-              <option value="Nepal">Nepal</option>
+              {% for c in companies %}
+              <option value="{{ c.regno }}">{{ c.name }}</option>
+              {% endfor %}
             </select>
           </div>
         </div>
@@ -218,7 +218,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="submit"></label>
           <div class="col-md-8">
-            <button id="submit" name="submit" class="btn btn-primary">Create</button>
+            <button id="submit" name="submit" class="btn btn-primary">{% block button %}{% endblock %}</button>
             <button id="cancel" name="cancel" class="btn btn-default">Cancel</button>
           </div>
         </div>

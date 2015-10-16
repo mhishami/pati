@@ -14,11 +14,16 @@ before_filter(SessionId) ->
             {ok, proceed}
     end.
 
-handle_request(<<"GET">>, _Action, _Args, Params, _Req) ->   
-    ?DEBUG("Params= ~p~n", [Params]),
-    %% / will render home.dtl
+handle_request(<<"GET">>, <<"new">>, _Args, Params, _) ->
     User = get_user(Params),
-    {render, [{user, User}]};
+    ?DEBUG("Params = ~p~n", [Params]),
+    {ok, Cos} = mongo_worker:find(?DB_CO, {}),
+
+    {render, <<"worker_new">>, [
+        {user, User},
+        {companies, web_util:maps_to_list(Cos)},
+        {menu_workers, <<"active">>}
+    ]};
 
 handle_request(_, _, _, _, _) ->
     {redirect, <<"/">>}.

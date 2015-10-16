@@ -3,7 +3,7 @@
 {% block adm_content %}
 
     <div class="row">
-      <!-- <h2 class="page-header">New Company</h2> -->
+      <!-- <h2 class="page-header">Company</h2> -->
 
       <!-- error handling -->
       {% if error %}
