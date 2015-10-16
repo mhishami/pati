@@ -22,7 +22,7 @@
               <td>
                 <div class="container-fluid pull-right">
                   <div class="row">
-                    <a class="btn btn-sm btn-default" href="/pdf/user?id={{ u.email }}">PDF</a>
+                    <a class="btn btn-sm btn-default" href="/pdf/gen/user?id={{ u.email }}">PDF</a>
                     <a class="btn btn-sm btn-success" href="/user/edit?id={{ u.email }}">Edit</a>
                     <a class="btn btn-sm btn-danger" href="/user/delete?id={{ u.email }}">Delete</a>
                   </div>
