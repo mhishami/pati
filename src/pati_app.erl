@@ -15,7 +15,9 @@ start(_Type, _Args) ->
 
     %% set debug for console logs
     lager:set_loglevel(lager_console_backend, debug),
-    os:cmd("mkdir -p lib/pati-0.1/priv/static/pdfs"),
+    os:cmd("mkdir -p " ++ code:priv_dir(pati) ++ "/static/pdfs"),
+    word_util:init(),
+    
 	pati_sup:start_link().
 
 stop(_State) ->

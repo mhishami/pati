@@ -8,6 +8,7 @@
 
 before_filter(SessionId) ->
     %% do some checking
+    word_util:init(),
     Sid = session_worker:get_cookies(SessionId),
     case Sid of
         {error, undefined} ->
@@ -47,32 +48,33 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
                 <<"name">> => Name,
                 <<"email">> => Email,
                 <<"role">> => Role,
-                <<"password">> => web_util:hash_password(Pass2)
+                <<"password">> => web_util:hash_password(Pass2),
+                <<"oid">> => word_util:gen_pnr()
             },
             mongo_worker:save(?DB_USER, User),
             {redirect, <<"/adm/users">>}
     end;
 
-handle_request(<<"GET">>, <<"edit">>, _Args, Params, _) ->
-    {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
-    Id = proplists:get_value(<<"id">>, QsVals),
+handle_request(<<"GET">>, <<"edit">>, [Oid], Params, _) ->
+    % {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
+    % Id = proplists:get_value(<<"id">>, QsVals),
 
     User = get_user(Params),
-    {ok, Data} = mongo_worker:find_one(?DB_USER, {<<"email">>, Id}),
+    {ok, Data} = mongo_worker:find_one(?DB_USER, {<<"oid">>, Oid}),
     {ok, Name} = maps:find(<<"name">>, Data),
     {ok, Email} = maps:find(<<"email">>, Data),
+    {ok, Oid} = maps:find(<<"oid">>, Data),
     ?DEBUG("Data= ~p~n", [Data]),
     {render, <<"user_edit">>, [
             {user, User}, {name, Name}, {email, Email}, {role, <<"user">>},
-            {menu_users, <<"active">>}
+            {menu_users, <<"active">>}, {oid, Oid}
         ]};
 
-handle_request(<<"GET">>, <<"delete">>, _Args, Params, _) ->
-    {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
-    Id = proplists:get_value(<<"id">>, QsVals),
-
-    ?DEBUG("Deleting user ~p~n", [Id]),
-    mongo_worker:delete(?DB_USER, {<<"email">>, Id}),
+handle_request(<<"GET">>, <<"delete">>, [Oid], _Args, _) ->
+    % {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
+    % Id = proplists:get_value(<<"id">>, QsVals),
+    % ?DEBUG("Deleting user ~p~n", [Id]),
+    mongo_worker:delete(?DB_USER, {<<"email">>, Oid}),
     {redirect, <<"/adm/users">>};
 
 handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->

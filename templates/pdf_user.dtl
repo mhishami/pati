@@ -1,76 +1,58 @@
-{% extends "pdf.dtl" %}
+{% extends "pdf_new.dtl" %}
 
 {% block content %}
 
-  <div class="row" style="background-color: #e0e0eb;">
-    <h4 style="padding-left: 10px">A) MAKLUMAT PERIBADI PENGGUNA</h4>
-    <i style="padding-left: 30px;">(Particulars of User)</i>
-  </div>
+  <style type="text/css">
+      html, body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+      .checkbox { display: inline; }
+      .inline { display: inline; }
+      .text-left { text-align: left; }
+      label { padding: 5px 5px 5px 30px; }
+      input { color: #000; background: white;}
 
-  <div class="row form-group" style="margin-top: 10px;">
-    <div class="col-xs-6">
-      <label class="col-xs-3 control-label">Nama</label>
-      <div class="col-xs-9">
-        <input type="text" class="form-control input-md" value="{{ name }}">
-      </div>
-    </div>
-    <div class="col-xs-6">
-      <label class="col-xs-3 control-label">Jantina</label>
-      <div class="col-xs-9">
-        <input type="text" class="no-control" size="2" value="{{ sex_male }}"> Lelaki&nbsp;
-        <input type="text" class="no-control" size="2" value="{{ sex_female }}"> Perempuan&nbsp;
-      </div>
-    </div>
-  </div>
+  </style>
 
-  <div class="row form-group">
-    <div class="col-xs-6">
-      <label class="col-xs-3 control-label">Warganegara</label>
-      <div class="col-xs-9">
-        <input type="text" class="form-control input-md" value="{{ nationality }}">
+  <div class="card">
+    <div class="card__content form-group">    
+      <div class="card" style="background-color: #e0e0eb; padding-bottom: 10px;">
+        <h4 style="padding-left: 10px">A) MAKLUMAT PERIBADI PENGGUNA</h4>
+        <i style="padding-left: 30px;">(Particulars of User)</i>
       </div>
-    </div>
-    <div class="col-xs-6">
-      <label class="col-xs-3 control-label">Tarikh Lahir</label>
-      <div class="col-xs-9">
-        <input type="text" class="no-control" size="4" value="{{ dob_dd }}">/hari&nbsp;
-        <input type="text" class="no-control" size="4" value="{{ dob_mm }}">/bulan&nbsp;
-        <input type="text" class="no-control" size="4" value="{{ dob_yy }}">/tahun&nbsp;
-      </div>
-    </div>
-  </div>
+      <table style="width: 970px;">
+        <tbody>
+          <tr>
+            <td style="width: 15%;"><label class="control-label">Nama</label></td>
+            <td style="width: 35%;"><input type="text" class="form-control" value="{{ name }}"></td>
+            <td style="width: 15%;"><label class="control-label">Jantina</label></td>
+            <td style="width: 35%;">
+              <div class="checkbox">
+                <input type="checkbox" name="sex">
+                <label class="control-label"><span class="check"></span><span class="box"></span>
+                  Lelaki
+                </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="sex">
+                <label class="control-label"><span class="check"></span><span class="box"></span>
+                  Perempuan
+                </label>
+              </div>
+            </td>        
+          </tr>
 
+          <tr>
+            <td style="width: 15%;"><label class="control-label">Email</label></td>
+            <td style="width: 35%;"><input type="text" class="form-control" value="{{ email }}"></td>
+            <td style="width: 15%;"><label class="control-label">Role</label></td>
+            <td style="width: 35%;"><input type="text" class="form-control" value="{{ role }}"></td>
+          </tr>
 
-  <div class="row form-group">
-    <div class="col-xs-6">
-      <div class="row">
-        <label class="col-xs-3 control-label">No Telefon</label>
-        <div class="col-xs-9">
-          <input type="text" class="form-control input-md" value="{{ phone }}">
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6">
-      <div class="row">
-        <label class="col-xs-3 control-label">Alamat Email</label>
-        <div class="col-xs-9">
-          <input type="text" class="form-control input-md" value="{{ email }}">
-        </div>
-      </div>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <hr>
-  <p><i>For Office Use Only:</i></p>
-  <div class="row form-group">
-    <div class="col-xs-4">
-      Agent Code:
-    </div>
-    <div class="col-xs-4">
-      Date:
-    </div>
-    <div class="col-xs-4">
-      Company Stamp:
-    </div>
-  </div>
 {% endblock %}

@@ -1,0 +1,5 @@
+{% extends "worker.dtl" %}
+
+{% block action %}/worker/update{% endblock %}
+{% block button %}Update{% endblock %}
+

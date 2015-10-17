@@ -18,6 +18,9 @@ handle_request(<<"POST">>, <<"login">>, _, Params, _) ->
     Password = proplists:get_value(<<"password">>, PostVals, <<"">>),
     ?DEBUG("Email= ~p, Password= ~p~n", [Email, Password]),
 
+    %% get session id
+    {ok, Sid} = maps:find(<<"sid">>, Params),
+
     Res = mongo_worker:find_one(?DB_USER, {<<"email">>, Email}),
     ?DEBUG("Db Result = ~p~n", [Res]),
     case Res of
@@ -29,8 +32,9 @@ handle_request(<<"POST">>, <<"login">>, _, Params, _) ->
             case authenticate(Password, Data) of
                 ok ->
                     %% set session, and cookies etc.
-                    Sid = web_util:hash_password(word_util:gen_pnr()),
-                    session_worker:set_cookies(Sid, Email),
+                    {ok, success} = session_worker:set_cookies(Sid, Email),
+                    ?DEBUG("Session data: Sid=~p, Email= ~p, SessionWorker= ~p~n", 
+                        [Sid, Email, session_worker:get_cookies(Sid)]),
                     {redirect, <<"/adm">>, {cookie, <<"auth">>, Email}};
                 error ->
                     {render, <<"auth_login">>, [
@@ -97,6 +101,7 @@ handle_request(_Method, _Action, _Args, _Params, _Req) ->
 authenticate(Password, Data) ->
     HashPass = web_util:hash_password(Password),
     Pass = maps:get(<<"password">>, Data),
+    ?DEBUG("Pass= ~p, HashPass= ~p~n", [Pass, HashPass]),
     case HashPass =:= Pass of
         true -> ok;
         _    -> error

@@ -22,6 +22,16 @@
         <!-- Form Name -->
         <h2 class="page-header">Company Details</h2>
 
+        {% block new_co %}
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Object Id</label>  
+          <div class="col-md-4">
+          <input id="name" name="name" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" disabled>
+          </div>
+        </div>
+        {% endblock %}
+
         <!-- Multiple Radios -->
         <div class="form-group">
           <label class="col-md-4 control-label" for="radios">Company Type</label>

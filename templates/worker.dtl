@@ -29,18 +29,29 @@
             <select id="employer" name="employer" class="selectpicker form-control" required="">
               <option value="--">--</option>
               {% for c in companies %}
-              <option value="{{ c.regno }}">{{ c.name }}</option>
+              <option value="{{ c.oid }}">{{ c.name }}</option>
               {% endfor %}
             </select>
           </div>
         </div>
 
         <h3 class="page-header">Personal Details</h3>
+
+        {% block new_worker %}
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="oid">Object Id</label>  
+          <div class="col-md-4">
+          <input id="oid" name="oid" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" readonly>
+          </div>
+        </div>
+        {% endblock %}
+
         <!-- Text input-->
         <div class="form-group">
           <label class="col-md-4 control-label" for="name">Name</label>  
           <div class="col-md-4">
-          <input id="name" name="name" type="text" placeholder="Full Name" class="form-control input-md" required="">
+          <input id="name" name="name" type="text" placeholder="Full Name" class="form-control input-md" required="" value="{{ name }}">
           <span class="help-block">Enter your full name</span>  
           </div>
         </div>
@@ -51,11 +62,11 @@
           <div class="col-md-4">
             <div class="form-group">
               <div class="radios">
-                <label for="my-radio1">
-                  <input id="my-radio1" type="radio" name="gender" checked=""/><span class="outer"><span class="inner"></span></span>Male
+                <label for="sex_male">
+                  <input id="sex_male" type="radio" name="gender" value="male" {{ sex_male }}><span class="outer"><span class="inner"></span></span>Male
                 </label>
-                <label for="my-radio2">
-                  <input id="my-radio2" type="radio" name="gender"/><span class="outer"><span class="inner"></span></span>Female
+                <label for="sex_female">
+                  <input id="sex_female" type="radio" name="gender" value="female" {{ sex_female }}><span class="outer"><span class="inner"></span></span>Female
                 </label>
               </div>
             </div>
@@ -64,9 +75,9 @@
 
         <!-- Select Basic -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="natiionality">Nationality</label>
+          <label class="col-md-4 control-label" for="nationality">Nationality</label>
           <div class="col-md-4">
-            <select id="natiionality" name="natiionality" class="selectpicker form-control">
+            <select id="nationality" name="nationality" class="selectpicker form-control" required="">
               <option value="--">--</option>
               <option value="Bangladesh">Bangladesh</option>
               <option value="Indonesia">Indonesia</option>
@@ -79,7 +90,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="birthdate">Birthdate</label>  
           <div class="col-md-4">
-          <input id="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" required="">
+          <input id="birthdate" name="birthdate" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" required="" value="{{ birthdate }}">
           <span class="help-block">Enter date in DD/MM/YYYY format</span>  
           </div>
         </div>
@@ -88,7 +99,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="address">Address</label>
           <div class="col-md-4">                     
-            <textarea class="form-control" id="address" name="address"></textarea>
+            <textarea class="form-control" id="address" name="address" required="">{{ address }}</textarea>
           </div>
         </div>
 
@@ -96,7 +107,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="postcode">Postcode</label>  
           <div class="col-md-4">
-          <input id="postcode" name="postcode" type="text" placeholder="Postcode" class="form-control input-md" required="">
+          <input id="postcode" name="postcode" type="text" placeholder="Postcode" class="form-control input-md" required="" value="{{ postcode }}">
           <span class="help-block">Enter postcode</span>  
           </div>
         </div>
@@ -105,7 +116,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="state">State</label>
           <div class="col-md-4">
-            <select id="state" name="state" class="selectpicker form-control">
+            <select id="state" name="state" class="selectpicker form-control" required="">
               <option value="--">--</option>
               <option value="Johor">Johor</option>
               <option value="Kedah">Kedah</option>
@@ -134,11 +145,11 @@
           <div class="col-md-4">
             <div class="form-group">
               <div class="radios">
-                <label for="my-radio1">
-                  <input id="my-radio1" type="radio" name="passport" checked=""/><span class="outer"><span class="inner"></span></span>Yes
+                <label for="pass_yes">
+                  <input id="pass_yes" type="radio" name="passport" value="yes" {{ pass_yes }}><span class="outer"><span class="inner"></span></span>Yes
                 </label>
-                <label for="my-radio2">
-                  <input id="my-radio2" type="radio" name="passport"/><span class="outer"><span class="inner"></span></span>No
+                <label for="pass_no">
+                  <input id="pass_no" type="radio" name="passport" value="no" {{ pass_no }}><span class="outer"><span class="inner"></span></span>No
                 </label>
               </div>
             </div>
@@ -149,7 +160,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="passport_no">Passport No</label>  
           <div class="col-md-4">
-          <input id="passport_no" name="passport_no" type="text" placeholder="Passport No" class="form-control input-md">
+          <input id="passport_no" name="passport_no" type="text" placeholder="Passport No" class="form-control input-md" value="{{ passport_no }}" >
           <span class="help-block">Enter your passport no</span>  
           </div>
         </div>
@@ -158,7 +169,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="passport_exp">Passport Expiry Date</label>  
           <div class="col-md-4">
-          <input id="passport_exp" name="passport_exp" type="text" placeholder="DD/MM/YYYY" class="form-control input-md">
+          <input id="passport_exp" name="passport_exp" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" value="{{ passport_exp }}">
           <span class="help-block">Enter your passport expiry in DD/MM/YYYY</span>  
           </div>
         </div>
@@ -205,7 +216,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="sub_sector">Sub Sector</label>  
           <div class="col-md-4">
-          <input id="sub_sector" name="sub_sector" type="text" placeholder="Sub Sector" class="form-control input-md">
+          <input id="sub_sector" name="sub_sector" type="text" placeholder="Sub Sector" class="form-control input-md" value="{{ sub_sector }}">
           <span class="help-block">Enter the sub-sector</span>  
           </div>
         </div>
@@ -214,8 +225,8 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="submit"></label>
           <div class="col-md-8">
-            <button id="submit" name="submit" class="btn btn-primary">{% block button %}{% endblock %}</button>
-            <button id="cancel" name="cancel" class="btn btn-default">Cancel</button>
+            <button id="submit" class="btn btn-primary">{% block button %}{% endblock %}</button>
+            <button id="cancel" class="btn btn-default">Cancel</button>
           </div>
         </div>
 

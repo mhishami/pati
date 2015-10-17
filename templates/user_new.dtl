@@ -3,6 +3,8 @@
 {% block action %}/user/new{% endblock %}
 {% block button %}Create{% endblock %}
 
+{% block new_user %}{% endblock %}
+
 {% block role %}
 <div class="form-group">
   <label class="col-md-4 control-label" for="role">User Role</label>

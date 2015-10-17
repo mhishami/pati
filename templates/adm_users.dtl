@@ -9,6 +9,7 @@
         <table class="table table-hover">
           <thead>
             <tr>
+              <th>Id</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -18,15 +19,16 @@
           <tbody>
             {% for u in users %}
             <tr>
+              <td>{{ u.oid }}</td>
               <td>{{ u.name }}</td>
               <td>{{ u.email }}</td>
               <td>{{ u.role }}</td>
               <td>
                 <div class="container-fluid pull-right">
                   <div class="row">
-                    <a class="btn btn-sm btn-default" href="/pdf/gen/user?id={{ u.email }}">PDF</a>
-                    <a class="btn btn-sm btn-success" href="/user/edit?id={{ u.email }}">Edit</a>
-                    <a class="btn btn-sm btn-danger" href="/user/delete?id={{ u.email }}">Delete</a>
+                    <a class="btn btn-sm btn-default" href="/pdf/gen/user/{{ u.oid }}">PDF</a>
+                    <a class="btn btn-sm btn-success" href="/user/edit/{{ u.oid }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/user/delete/{{ u.email }}">Delete</a>
                   </div>
                 </div>
               </td>

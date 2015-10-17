@@ -19,6 +19,16 @@
           <!-- Form Name -->
           <h2 class="page-header">User</h2>
 
+          {% block new_user %}
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="oid">Object Id</label>  
+            <div class="col-md-4">
+            <input id="oid" name="oid" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" readonly>
+            </div>
+          </div>
+          {% endblock %}
+
           <!-- Text input-->
           <div class="form-group">
             <label class="col-md-4 control-label" for="name">Name</label>  

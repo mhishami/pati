@@ -9,6 +9,7 @@
         <table class="table table-hover">
           <thead>
             <tr>
+              <th>Oid</th>
               <th>Name</th>
               <th>Nationality</th>
               <th>State</th>
@@ -19,6 +20,7 @@
           <tbody>
             {% for w in workers %}
             <tr>
+              <td>{{ w.oid }}</td>
               <td>{{ w.name }}</td>
               <td>{{ w.nationality }}</td>
               <td>{{ w.state }}</td>
@@ -26,9 +28,9 @@
               <td>
                 <div class="container-fluid pull-right">
                   <div class="row">
-                    <a class="btn btn-sm btn-default" href="/pdf/user?id={{ w.uuid }}">PDF</a>
-                    <a class="btn btn-sm btn-success" href="/worker/edit?uuid={{ w.uuid }}">Edit</a>
-                    <a class="btn btn-sm btn-danger" href="/worker/delete?uuid={{ w.uuid }}">Delete</a>
+                    <a class="btn btn-sm btn-default" href="/pdf/gen/worker/{{ w.oid }}">PDF</a>
+                    <a class="btn btn-sm btn-success" href="/worker/edit/{{ w.oid }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/worker/delete/{{ w.oid }}">Delete</a>
                   </div>
                 </div>
               </td>

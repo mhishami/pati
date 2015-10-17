@@ -10,6 +10,7 @@
 before_filter(SessionId) ->
     %% do some checking
     Sid = session_worker:get_cookies(SessionId),
+    ?DEBUG("SessionId= ~p, Query= ~p~n", [SessionId, Sid]),
     case Sid of
         {error, undefined} ->
             {redirect, <<"/auth/login">>};
@@ -51,10 +52,10 @@ handle_request(<<"GET">>, <<"cos">>, _, Params, _) ->
 
 handle_request(<<"GET">>, <<"workers">>, _, Params, _) ->
     User = get_user(Params),
-    {ok, Cos} = mongo_worker:find(?DB_WORKER, {}, [], 10),
+    {ok, Workers} = mongo_worker:find(?DB_WORKER, {}, [], 10),
     {render, <<"adm_workers">>, [
             {user, User},
-            {users, web_util:maps_to_list(Cos)},
+            {workers, web_util:maps_to_list(Workers)},
             {menu_workers, <<"active">>}
         ]};
 

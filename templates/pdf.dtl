@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- The above 2 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="PDF Report">
+    <meta name="author" content="Hisham Ismail">
 
     <!-- Note there is no responsive meta tag here -->
 
     <link rel="icon" href="/static/favicon.ico">
 
-    <title>Non-responsive Template for Bootstrap</title>
+    <title>PATI Report</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">

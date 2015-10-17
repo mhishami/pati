@@ -3,3 +3,4 @@
 {% block action %}/worker/new{% endblock %}
 {% block button %}Create{% endblock %}
 
+{% block new_worker %}{% endblock %}

@@ -36,16 +36,16 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
     % Email = proplists:get_value(<<"email">>, PostVals),
 
     Company = maps:from_list(PostVals),
-    mongo_worker:save(?DB_CO, Company),
+    mongo_worker:save(?DB_CO, Company#{ <<"oid">> => word_util:gen_pnr() }),
     {redirect, <<"/adm/cos">>};
 
-handle_request(<<"GET">>, <<"edit">>, _Args, Params, _) ->
+handle_request(<<"GET">>, <<"edit">>, [Oid], Params, _) ->
     User = get_user(Params),
-    {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
-    RegNo = proplists:get_value(<<"id">>, PostVals),
+    % {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
+    % RegNo = proplists:get_value(<<"id">>, PostVals),
 
-    ?DEBUG("Co RegNo= ~p~n", [RegNo]),
-    {ok, Company} = mongo_worker:find_one(?DB_CO, {<<"regno">>, RegNo}),
+    % ?DEBUG("Co RegNo= ~p~n", [RegNo]),
+    {ok, Company} = mongo_worker:find_one(?DB_CO, {<<"oid">>, Oid}),
     {ok, Type} = maps:find(<<"type">>, Company),
     {render, <<"co_edit">>, [
         {user, User},
@@ -109,12 +109,12 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
             {redirect, <<"/adm/cos">>}
     end;
 
-handle_request(<<"GET">>, <<"delete">>, _Args, Params, _) ->
-    {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
-    Id = proplists:get_value(<<"id">>, PostVals),
+handle_request(<<"GET">>, <<"delete">>, [Oid], _, _) ->
+    % {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
+    % Id = proplists:get_value(<<"id">>, PostVals),
 
-    ?DEBUG("Deleting Company ~p~n", [Id]),
-    mongo_worker:delete(?DB_CO, {<<"regno">>, Id}),
+    % ?DEBUG("Deleting Company ~p~n", [Id]),
+    mongo_worker:delete(?DB_CO, {<<"oid">>, Oid}),
     {redirect, <<"/adm/cos">>};
 
 handle_request(_, _, _, _, _) ->
