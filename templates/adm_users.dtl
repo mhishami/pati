@@ -1,6 +1,8 @@
 {% extends "adm.dtl" %}
 
-{% block adm_content %}
+{% block content %}
+  <div class="card ">
+    <div class="card__content card__content--padding1">    
 
       <h1 class="page-header">Users</h1>
       <div class="table-responsive">
@@ -34,6 +36,8 @@
         </table>
       </div>
       <a href="/user/new" class="btn btn-primary">New User</a>
+    </div>
+  </div>
 
 
 {% endblock %}

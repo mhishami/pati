@@ -1,8 +1,10 @@
 {% extends "adm.dtl" %}
 
-{% block adm_content %}
+{% block content %}
 
-    <div class="row">
+  <div class="card">
+    <div class="card__content card__content--padding1">    
+
       <!-- <h2 class="page-header">Company</h2> -->
 
       <!-- error handling -->
@@ -84,7 +86,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="state">State</label>
           <div class="col-md-4">
-            <select id="state" name="state" class="form-control" selected="{{ state }}">
+            <select id="state" name="state" class="selectpicker form-control" selected="{{ state }}">
               <option value="--">--</option>
               <option value="Johor">Johor</option>
               <option value="Kedah">Kedah</option>
@@ -175,5 +177,6 @@
 
       </div>
     </div>
+  </div>
 
 {% endblock %}

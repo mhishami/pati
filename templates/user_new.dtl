@@ -7,7 +7,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="role">User Role</label>
   <div class="col-md-4">
-    <select id="role" name="role" class="form-control">
+    <select id="role" name="role" class="selectpicker form-control">
       <option value="user">User</option>
       <option value="admin">Admin</option>
     </select>

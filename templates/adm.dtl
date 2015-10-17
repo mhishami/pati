@@ -1,53 +1,355 @@
-{% extends "base.dtl" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-{% block content %}
+        <title>PATI App</title>
 
-    <div class="container-fluid" style="margin-top: 70px">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="{{ menu_over }}"><a href="/adm">Overview </a></li>
-            <li class="{{ menu_users }}"><a href="/adm/users">Users </a></li>
-            <li class="{{ menu_cos }}"><a href="/adm/cos">Companies </a></li>
-            <li class="{{ menu_workers }}"><a href="/adm/workers">Worker </a></li>
-          </ul>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:700,500,400,200,100,100italic,300,300italic" rel="stylesheet">
+        <!-- Material icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="/static/plumo/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Weather icon -->
+        <link href="/static/plumo/vendor/weather-icons/css/weather-icons.min.css" rel="stylesheet">
+        <!-- animate.css -->
+        <link href="/static/plumo/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <!-- handsontable -->
+        <link href="/static/plumo/vendor/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+        <!-- c3 -->
+        <link href="/static/plumo/vendor/c3/c3.min.css" rel="stylesheet">
+        <!-- Bootstrap select -->
+        <link href="/static/plumo/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+        <!-- bootgrid -->
+        <link href="/static/plumo/vendor/jquery.bootgrid/dist/jquery.bootgrid.min.css" rel="stylesheet">
+        <!-- Nouislider -->
+        <link href="/static/plumo/vendor/nouislider/distribute/nouislider.min.css" rel="stylesheet">
+        <!-- Pygments -->
+        <link href="/static/plumo/css/syntax-highlight/pygments.css" rel="stylesheet">
+        <!-- Colors helpers -->
+        <link href="/static/plumo/css/helpers/colors.css" rel="stylesheet">
+        <!-- Style -->
+        <link href="/static/plumo/css/style.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <!-- Dashboard wrapper -->
+        <div id="dashboard__wrapper">
+            <!-- Dashboard -->
+            <div class="dashboard">
+                <div class="dashboard__overlay"></div>
+                <!-- Sidebar -->
+                <div class="dashboard__sidebar">
+                    <div class="dashboard__sidebar-scroll">
+                        <ul id="menu">
+                            <li>
+                                <a href="/adm"><i class="material-icons">dashboard</i>Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="/adm/users"><i class="material-icons">face</i>Users</a>
+                            </li>
+                            <li>
+                                <a href="/adm/cos"><i class="material-icons">business</i>Companies</a>
+                            </li>
+                            <li>
+                                <a href="/adm/workers"><i class="material-icons">people</i>Workers</a>
+                            </li>
+                            <li class="title">Helpers</li>
+                            <li>
+                                <a href="/auth/logout"><i class="material-icons">eject</i>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- / Sidebar -->
+                <!-- Content -->
+                <div class="dashboard__content">
+                    <!-- Topbar -->
+                    <div class="dashboard__topbar container-fluid">
+                        <ul class="list-inline">
+                            <li><a href="#" class="sidebar-toggle"> <i class="material-icons">&#xE5D2;</i></a></li>
+                            <li class="breadcrumnb"><a href="/">PATI Admin</a><i class="material-icons">&#xE5CC;</i>
+                                <h1>Dashboard</h1>
+                            </li>
+                            <li class="pull-right">
+                                <ul class="list-inline">
+                                    <li><a href="#" class="hub-toggle"><i class="material-icons">&#xE7F4;</i><span class="badge bg-pink">4</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- / Topbar -->
+                    <!-- Inner -->
+                    <div class="dashboard__inner">
+                        <div class="container-fluid">
+                        {% block content %}
+
+                            <div class="card inputs_example">
+                                <div class="card__header">
+                                    <h2 class="card__title">Inputs & textareas</h2>
+                                    <h3 class="card__subtitle"> Licentia cuncta orientis nullum bonis adhibens
+                                    </h3>
+                                </div>
+                                <div class="card__content card__content--padding1">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Input sm" class="form-control input-sm">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Input default" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Input lg" class="form-control input-lg">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <input type="text" placeholder=".col-sm-4" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <input type="text" placeholder=".col-sm-3" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <input type="text" placeholder=".col-sm-5" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" disabled placeholder="Disabled input" class="form-control">
+                                    </div>
+                                    <div class="form-group has-success">
+                                        <input type="text" placeholder="Input with success" class="form-control">
+                                    </div>
+                                    <div class="form-group has-warning">
+                                        <input type="text" placeholder="Input with warning" class="form-control">
+                                    </div>
+                                    <div class="form-group has-error">
+                                        <input type="text" placeholder="Input with error" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea placeholder="Textarea" rows="4" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="card__footer"></div>
+                            </div>
+                            <div class="card">
+                                <div class="card__header card__header--padding1">
+                                    <h2 class="card__title">Select</h2>
+                                    <h3 class="card__subtitle">Diligat tempus quo intellegitur neutris</h3>
+                                </div>
+                                <div class="card__content card__content--padding1">
+                                    <div class="row">
+                                        <div class="col-lg-4"><strong>standard</strong>
+                                            <div class="form-group">
+                                                <select data-size="5" class="selectpicker form-control">
+                                                    <option>Please select an option</option>
+                                                    <option>Option 1</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                    <option>Option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4"> <strong>multiple </strong>
+                                            <div class="form-group">
+                                                <select data-size="5" multiple="multiple" class="selectpicker form-control">
+                                                    <option>Please select an option</option>
+                                                    <option>Option 1</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                    <option>Option 4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4"><strong>select with groups</strong>
+                                            <div class="form-group">
+                                                <select data-size="6" class="selectpicker form-control">
+                                                    <optgroup label="Group 1">
+                                                        <option>Option 1</option>
+                                                        <option>Option 2</option>
+                                                    </optgroup>
+                                                    <optgroup label="Group 2">
+                                                        <option>Option 3</option>
+                                                        <option>Option 4</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card__footer"></div>
+                            </div>
+                            <div class="card">
+                                <div class="card__header card__header--padding1">
+                                    <h2 class="card__title">Others</h2>
+                                    <h3 class="card__subtitle">usefull forms components</h3>
+                                </div>
+                                <div class="card__content card__content--padding1">
+                                    <p><strong>Slider input</strong></p>
+                                    <div class="form-group">
+                                        <div id="slider-demo"></div>
+                                    </div>
+                                    <div class="spacer--sm"></div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p><strong>Radio</strong></p>
+                                            <div class="form-group">
+                                                <div class="radios">
+                                                    <label for="my-radio1">
+                                                        <input id="my-radio1" type="radio" name="radios" checked=""/><span class="outer"><span class="inner"></span></span>Lapsorum splendor lapsorum
+                                                    </label>
+                                                    <label for="my-radio2">
+                                                        <input id="my-radio2" type="radio" name="radios"/><span class="outer"><span class="inner"></span></span>Habebit non pervenire
+                                                    </label>
+                                                    <label for="my-radio3">
+                                                        <input id="my-radio3" type="radio" name="radios"/><span class="outer"><span class="inner"></span></span>Mulierculae autem fieri
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="spacer--sm"></div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <p> <strong>Checkbox</strong></p>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <input id="my-checkbox" type="checkbox"/>
+                                                    <label for="my-checkbox"><span class="check"></span><span class="box"></span>Checkbox</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <input id="my-checkbox2" type="checkbox" disabled=""/>
+                                                    <label for="my-checkbox2"><span class="check"></span><span class="box"></span>Checkbox disabled </label>
+                                                </div>
+                                            </div>
+                                            <div class="spacer--sm"></div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <p> <strong>Toggle</strong></p>
+                                            <div class="form-group">
+                                                <div class="toggle">
+                                                    <input id="my-toggle" type="checkbox" checked="" class="cbx"/>
+                                                    <label for="my-toggle" class="lbl"></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="toggle">
+                                                    <input id="my-toggle2" type="checkbox" disabled="" class="cbx"/>
+                                                    <label for="my-toggle2" class="lbl"></label>
+                                                </div>
+                                            </div>
+                                            <div class="spacer--sm"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card__footer"></div>
+                            </div>
+                        {% endblock %}
+                        </div>
+                    </div>
+                    <!-- / Inner -->
+                </div>
+                <!-- / Content -->
+                <!-- Hub -->
+                <div class="dashboard__hub">
+                    <div class="dashboard__hub-scroll">
+                        <div class="hub">
+                            <ul class="hub__filters">
+                                <li class="active"><a href="#" class="hub__filter active">All</a></li>
+                                <li><a href="#" data-filter="email" class="hub__filter">Emails</a></li>
+                                <li><a href="#" data-filter="agenda" class="hub__filter">Agenda</a></li>
+                                <li><a href="#" data-filter="notification" class="hub__filter">Alerts</a></li>
+                                <li><a href="#" data-filter="chat" class="hub__filter">Chat</a></li>
+                            </ul>
+                            <ul class="hub__inner">
+                                <li class="hub__entry hub__entry--email">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--email"><i class="material-icons">&#xE0BE;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">John Doe</span><span class="hub__entry-excerpt">Ad regiis carpento oppidum mandato agebatur nihi...</span><span class="hub__entry-time">5 minutes ago</span></li>
+                                    </ul>
+                                </li>
+                                <li class="hub__entry hub__entry--agenda">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--agenda"><i class="material-icons">&#xE616;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">Meeting with Daniel</span><span class="hub__entry-excerpt">Bellatores porrigitur gentes nec</span><span class="hub__entry-time">14 minutes ago</span></li>
+                                    </ul>
+                                </li>
+                                <li class="hub__entry hub__entry--notification">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--notification"><i class="material-icons">&#xE7F4;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">New purchase</span><span class="hub__entry-excerpt">Suae rapidi praefectus ad mitigabat vel ad fluminis</span><span class="hub__entry-time">18 minutes ago</span></li>
+                                    </ul>
+                                </li>
+                                <li class="hub__entry hub__entry--chat">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--chat"><i class="material-icons">&#xE0B7;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">Conversation with David</span><span class="hub__entry-excerpt">Ad regiis carpento oppidum mandato agebatur nihil..</span><span class="hub__entry-time">47 minutes ago</span></li>
+                                    </ul>
+                                </li>
+                                <li class="hub__entry hub__entry--email">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--email"><i class="material-icons">&#xE0BE;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">Dennis Bernard</span><span class="hub__entry-excerpt">Cautela graves aemulis sed cetera cetera...</span><span class="hub__entry-time">57 minutes ago</span></li>
+                                    </ul>
+                                </li>
+                                <li class="hub__entry hub__entry--email">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--email"><i class="material-icons">&#xE0BE;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">Jordan Wilson</span><span class="hub__entry-excerpt">Ubi velut exaggerantium pendere cruentae velut...</span><span class="hub__entry-time">1 hour ago</span></li>
+                                    </ul>
+                                </li>
+                                <li class="hub__entry hub__entry--agenda">
+                                    <ul>
+                                        <li class="hub__entry-icon hub__entry-icon--agenda"><i class="material-icons">&#xE616;</i></li>
+                                        <li class="hub__entry-information"><span class="hub__entry-title">Diner with Bill</span><span class="hub__entry-excerpt">Aliquotiens actus molliverunt quoque</span><span class="hub__entry-time">2 hours ago</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Hub -->
+            </div>
+            <!-- / Dashboard -->
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <!-- / Dashboard wrapper -->
 
-          {% block adm_content %}
-          <h1 class="page-header">Dashboard</h1>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/static/plumo/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- handsontable -->
+        <script src="/static/plumo/vendor/handsontable/dist/handsontable.full.min.js"></script>
+        <!-- d3 -->
+        <script src="/static/plumo/vendor/d3/d3.min.js"></script>
+        <!-- c3 -->
+        <script src="/static/plumo/vendor/c3/c3.min.js"></script>
+        <!-- Bootstrap select -->
+        <script src="/static/plumo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <!-- Bootgrid -->
+        <script src="/static/plumo/vendor/jquery.bootgrid/dist/jquery.bootgrid.min.js"></script>
+        <!-- Nouislider -->
+        <script src="/static/plumo/vendor/nouislider/distribute/nouislider.min.js"></script>
+        <!-- Nicescroll -->
+        <script src="/static/plumo/vendor/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+        <!-- App -->
+        <script src="/static/plumo/js/app.js"></script>
 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-
-          {% endblock %}
-
-        </div>
-      </div>
-    </div>
-
-{% endblock %}
-
-{% block footer %}{% endblock %}
-
-
+        <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            
+              ga('create', 'UA-68963815-1', 'auto');
+              ga('send', 'pageview');
+        </script>
+    </body>
+</html>

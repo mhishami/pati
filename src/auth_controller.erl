@@ -23,7 +23,7 @@ handle_request(<<"POST">>, <<"login">>, _, Params, _) ->
     case Res of
         {error, not_found} ->
             %% redirect to registration
-            {redirect, <<"/auth/register">>};
+            {redirect, <<"/">>};
         {ok, Data} ->
             %% validate user
             case authenticate(Password, Data) of
@@ -31,7 +31,7 @@ handle_request(<<"POST">>, <<"login">>, _, Params, _) ->
                     %% set session, and cookies etc.
                     Sid = web_util:hash_password(word_util:gen_pnr()),
                     session_worker:set_cookies(Sid, Email),
-                    {redirect, <<"/">>, {cookie, <<"auth">>, Email}};
+                    {redirect, <<"/adm">>, {cookie, <<"auth">>, Email}};
                 error ->
                     {render, <<"auth_login">>, [
                             {error, "Username, or password is invalid"},

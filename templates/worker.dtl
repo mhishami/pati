@@ -1,9 +1,9 @@
 {% extends "adm.dtl" %}
 
-{% block adm_content %}
+{% block content %}
 
-    <div class="row">
-      
+  <div class="card">
+    <div class="card__content card__content--padding1">    
 
       <!-- Form Name -->
       <h2 class="page-header">Worker Details</h2>
@@ -26,7 +26,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="employer">Employer</label>
           <div class="col-md-4">
-            <select id="employer" name="employer" class="form-control">
+            <select id="employer" name="employer" class="selectpicker form-control" required="">
               <option value="--">--</option>
               {% for c in companies %}
               <option value="{{ c.regno }}">{{ c.name }}</option>
@@ -52,13 +52,13 @@
           <div class="radio">
             <label for="gender-0">
               <input type="radio" name="gender" id="gender-0" value="male" checked="checked">
-              Male
+              <span class="outer"><span class="inner"></span></span>Male
             </label>
           </div>
           <div class="radio">
             <label for="gender-1">
               <input type="radio" name="gender" id="gender-1" value="female">
-              Female
+              <span class="outer"><span class="inner"></span></span>Female
             </label>
           </div>
           </div>
@@ -68,7 +68,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="natiionality">Nationality</label>
           <div class="col-md-4">
-            <select id="natiionality" name="natiionality" class="form-control">
+            <select id="natiionality" name="natiionality" class="selectpicker form-control">
               <option value="--">--</option>
               <option value="Bangladesh">Bangladesh</option>
               <option value="Indonesia">Indonesia</option>
@@ -107,7 +107,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="state">State</label>
           <div class="col-md-4">
-            <select id="state" name="state" class="form-control">
+            <select id="state" name="state" class="selectpicker form-control">
               <option value="--">--</option>
               <option value="Johor">Johor</option>
               <option value="Kedah">Kedah</option>
@@ -137,13 +137,13 @@
           <div class="radio">
             <label for="passport-0">
               <input type="radio" name="passport" id="passport-0" value="no" checked="checked">
-              No
+              <span class="outer"><span class="inner"></span></span>No
             </label>
           </div>
           <div class="radio">
             <label for="passport-1">
               <input type="radio" name="passport" id="passport-1" value="yes">
-              Yes
+              <span class="outer"><span class="inner"></span></span>Yes
             </label>
           </div>
           </div>
@@ -172,36 +172,36 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="sector">Sector</label>
           <div class="col-md-4">
-          <div class="checkbox">
-            <label for="sector-0">
+            <div class="checkbox">
               <input type="checkbox" name="sector" id="sector-0" value="Manufacturing">
-              Manufacturing
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="sector-1">
+              <label for="sector-0"><span class="check"></span><span class="box"></span>
+                Manufacturing
+              </label>
+            </div>
+            <div class="checkbox">
               <input type="checkbox" name="sector" id="sector-1" value="Agriculture">
-              Agriculture
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="sector-2">
+              <label for="sector-1"><span class="check"></span><span class="box"></span>
+                Agriculture
+              </label>
+            </div>
+            <div class="checkbox">
               <input type="checkbox" name="sector" id="sector-2" value="Services">
-              Services
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="sector-3">
+              <label for="sector-2"><span class="check"></span><span class="box"></span>
+                Services
+              </label>
+            </div>
+            <div class="checkbox">
               <input type="checkbox" name="sector" id="sector-3" value="Construction">
-              Construction
-            </label>
-          </div>
-          <div class="checkbox">
-            <label for="sector-4">
+              <label for="sector-3"><span class="check"></span><span class="box"></span>
+                Construction
+              </label>
+            </div>
+            <div class="checkbox">
               <input type="checkbox" name="sector" id="sector-4" value="Plantation">
-              Plantation
-            </label>
-          </div>
+              <label for="sector-4"><span class="check"></span><span class="box"></span>
+                Plantation
+              </label>
+            </div>
           </div>
         </div>
 
@@ -228,5 +228,6 @@
 
       </div>
     </div>
+  </div>
 
 {% endblock %}

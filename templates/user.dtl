@@ -1,10 +1,9 @@
 {% extends "adm.dtl" %}
 
-{% block adm_content %}
+{% block content %}
 
-<div class="container-fluid">
-  <div class="row">    
-    <div>
+  <div class="card">
+    <div class="card__content card__content--padding1">    
 
       <!-- error handling -->
       {% if error %}
@@ -18,14 +17,13 @@
       <form class="form-horizontal" method="post" action="{{ action }}">
         <fieldset>
           <!-- Form Name -->
-          <h2 class="page-header">Update User</h2>
+          <h2 class="page-header">User</h2>
 
           <!-- Text input-->
           <div class="form-group">
             <label class="col-md-4 control-label" for="name">Name</label>  
             <div class="col-md-4">
-            <input id="name" name="name" type="text" placeholder="Full Name" class="form-control input-md" required="" value="{{ name }}">
-            <span class="help-block">Enter your full name</span>  
+            <input id="name" name="name" type="text" placeholder="Your Full Name" class="form-control input-md" required="" value="{{ name }}">
             </div>
           </div>
 
@@ -33,8 +31,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email</label>  
             <div class="col-md-4">
-            <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="" value="{{ email }}">
-            <span class="help-block">Enter your email address</span>  
+            <input id="email" name="email" type="text" placeholder="Your Email Address" class="form-control input-md" required="" value="{{ email }}">
             </div>
           </div>
 
@@ -43,8 +40,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="email">User Role</label>  
             <div class="col-md-4">
-            <input id="role" name="role" type="text" placeholder="Role" class="form-control input-md" required="" value="{{ role }}" readonly>
-            <span class="help-block">Your user role</span>  
+            <input id="role" name="role" type="text" placeholder="Select User Role" class="form-control input-md" required="" value="{{ role }}" readonly>
             </div>
           </div>
           {% endblock %}
@@ -54,8 +50,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="password">Password</label>
             <div class="col-md-4">
-              <input id="password" name="password" type="password" placeholder="Enter password" class="form-control input-md" required="">
-              <span class="help-block">Enter password</span>
+              <input id="password" name="password" type="password" placeholder="Enter your password" class="form-control input-md" required="">
             </div>
           </div>
 
@@ -63,8 +58,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="password2">Password (Again)</label>
             <div class="col-md-4">
-              <input id="password2" name="password2" type="password" placeholder="Enter your password again" class="form-control input-md" required="">
-              <span class="help-block">Enter the same password again</span>
+              <input id="password2" name="password2" type="password" placeholder="Enter your password, again" class="form-control input-md" required="">
             </div>
           </div>
 
@@ -81,7 +75,6 @@
 
     </div>
   </div>
-</div>
 
 
 {% endblock %}
