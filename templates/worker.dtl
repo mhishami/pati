@@ -49,18 +49,16 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="gender">Gender</label>
           <div class="col-md-4">
-          <div class="radio">
-            <label for="gender-0">
-              <input type="radio" name="gender" id="gender-0" value="male" checked="checked">
-              <span class="outer"><span class="inner"></span></span>Male
-            </label>
-          </div>
-          <div class="radio">
-            <label for="gender-1">
-              <input type="radio" name="gender" id="gender-1" value="female">
-              <span class="outer"><span class="inner"></span></span>Female
-            </label>
-          </div>
+            <div class="form-group">
+              <div class="radios">
+                <label for="my-radio1">
+                  <input id="my-radio1" type="radio" name="gender" checked=""/><span class="outer"><span class="inner"></span></span>Male
+                </label>
+                <label for="my-radio2">
+                  <input id="my-radio2" type="radio" name="gender"/><span class="outer"><span class="inner"></span></span>Female
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -134,18 +132,16 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="passport">Have Passport?</label>
           <div class="col-md-4">
-          <div class="radio">
-            <label for="passport-0">
-              <input type="radio" name="passport" id="passport-0" value="no" checked="checked">
-              <span class="outer"><span class="inner"></span></span>No
-            </label>
-          </div>
-          <div class="radio">
-            <label for="passport-1">
-              <input type="radio" name="passport" id="passport-1" value="yes">
-              <span class="outer"><span class="inner"></span></span>Yes
-            </label>
-          </div>
+            <div class="form-group">
+              <div class="radios">
+                <label for="my-radio1">
+                  <input id="my-radio1" type="radio" name="passport" checked=""/><span class="outer"><span class="inner"></span></span>Yes
+                </label>
+                <label for="my-radio2">
+                  <input id="my-radio2" type="radio" name="passport"/><span class="outer"><span class="inner"></span></span>No
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
