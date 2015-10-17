@@ -88,234 +88,82 @@
                         <div class="container-fluid">
                         {% block content %}
 
-                            <div class="card inputs_example">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card infobox">
+                                        <div class="infobox__header bg-indigo-400 indigo-100">
+                                            <div class="infobox__title">active users</div><i class="material-icons">&#xE7FD;</i>
+                                        </div>
+                                        <div class="infobox__content bg-indigo-400 white">8,245</div>
+                                        <div class="infobox__footer bg-indigo-300 white">Ratione patriam incondita ratione</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card infobox">
+                                        <div class="infobox__header bg-teal-400 teal-100">
+                                            <div class="infobox__title">invoices sent</div><i class="material-icons">&#xE24D;</i>
+                                        </div>
+                                        <div class="infobox__content bg-teal-400 white">1,014</div>
+                                        <div class="infobox__footer bg-teal-300 white">Ratione patriam incondita ratione</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card infobox">
+                                        <div class="infobox__header bg-orange-400 orange-100">
+                                            <div class="infobox__title">total sales</div><i class="material-icons">&#xE8CC;</i>
+                                        </div>
+                                        <div class="infobox__content bg-orange-400 white">$ 61,295</div>
+                                        <div class="infobox__footer bg-orange-300 white">Ratione patriam incondita ratione</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
                                 <div class="card__header">
-                                    <h2 class="card__title">Inputs & textareas</h2>
-                                    <h3 class="card__subtitle"> Licentia cuncta orientis nullum bonis adhibens
-                                    </h3>
+                                    <h2 class="card__title">Unique visitors</h2>
+                                    <h3 class="card__subtitle">Nisi natura habitura natura detestabili</h3>
                                 </div>
-                                <div class="card__content card__content--padding1">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Input sm" class="form-control input-sm">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Input default" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Input lg" class="form-control input-lg">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <input type="text" placeholder=".col-sm-4" class="form-control">
+                                <div class="card__content">
+                                    <div data-values="[[&quot;june&quot;,28,38,75,50,38,40,37],[&quot;jully&quot;,50,22,42,34,37,45,41]]" data-colors="[&quot;#009688&quot;,&quot;#3F51B5&quot;]" data-height="250" class="area-chart"></div>
+                                    <div class="container-fluid bg-white">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="widget-progress_chart">
+                                                    <div class="widget-progress_chart__title">Returning</div>
+                                                    <div class="widget-progress_chart__value">1,140</div>
+                                                    <div class="progress progress--medium">
+                                                        <div style="width:70%" class="progress-bar-teal progress-bar progress-bar--right"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="widget-progress_chart">
+                                                    <div class="widget-progress_chart__title">Duration</div>
+                                                    <div class="widget-progress_chart__value">2:41 min</div>
+                                                    <div class="progress progress--medium">
+                                                        <div style="width:40%" class="progress-bar-indigo progress-bar"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="widget-progress_chart">
+                                                    <div class="widget-progress_chart__title">Live</div>
+                                                    <div class="widget-progress_chart__value">2,742</div>
+                                                    <div class="progress progress--medium">
+                                                        <div style="width:80%" class="progress-bar-orange progress-bar"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <input type="text" placeholder=".col-sm-3" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <div class="form-group">
-                                                <input type="text" placeholder=".col-sm-5" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" disabled placeholder="Disabled input" class="form-control">
-                                    </div>
-                                    <div class="form-group has-success">
-                                        <input type="text" placeholder="Input with success" class="form-control">
-                                    </div>
-                                    <div class="form-group has-warning">
-                                        <input type="text" placeholder="Input with warning" class="form-control">
-                                    </div>
-                                    <div class="form-group has-error">
-                                        <input type="text" placeholder="Input with error" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea placeholder="Textarea" rows="4" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div class="card__footer"></div>
                             </div>
-                            <div class="card">
-                                <div class="card__header card__header--padding1">
-                                    <h2 class="card__title">Select</h2>
-                                    <h3 class="card__subtitle">Diligat tempus quo intellegitur neutris</h3>
-                                </div>
-                                <div class="card__content card__content--padding1">
-                                    <div class="row">
-                                        <div class="col-lg-4"><strong>standard</strong>
-                                            <div class="form-group">
-                                                <select data-size="5" class="selectpicker form-control">
-                                                    <option>Please select an option</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                    <option>Option 4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4"> <strong>multiple </strong>
-                                            <div class="form-group">
-                                                <select data-size="5" multiple="multiple" class="selectpicker form-control">
-                                                    <option>Please select an option</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                    <option>Option 4</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4"><strong>select with groups</strong>
-                                            <div class="form-group">
-                                                <select data-size="6" class="selectpicker form-control">
-                                                    <optgroup label="Group 1">
-                                                        <option>Option 1</option>
-                                                        <option>Option 2</option>
-                                                    </optgroup>
-                                                    <optgroup label="Group 2">
-                                                        <option>Option 3</option>
-                                                        <option>Option 4</option>
-                                                    </optgroup>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card__footer"></div>
-                            </div>
-                            <div class="card">
-                                <div class="card__header card__header--padding1">
-                                    <h2 class="card__title">Others</h2>
-                                    <h3 class="card__subtitle">usefull forms components</h3>
-                                </div>
-                                <div class="card__content card__content--padding1">
-                                    <p><strong>Slider input</strong></p>
-                                    <div class="form-group">
-                                        <div id="slider-demo"></div>
-                                    </div>
-                                    <div class="spacer--sm"></div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <p><strong>Radio</strong></p>
-                                            <div class="form-group">
-                                                <div class="radios">
-                                                    <label for="my-radio1">
-                                                        <input id="my-radio1" type="radio" name="radios" checked=""/><span class="outer"><span class="inner"></span></span>Lapsorum splendor lapsorum
-                                                    </label>
-                                                    <label for="my-radio2">
-                                                        <input id="my-radio2" type="radio" name="radios"/><span class="outer"><span class="inner"></span></span>Habebit non pervenire
-                                                    </label>
-                                                    <label for="my-radio3">
-                                                        <input id="my-radio3" type="radio" name="radios"/><span class="outer"><span class="inner"></span></span>Mulierculae autem fieri
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="spacer--sm"></div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <p> <strong>Checkbox</strong></p>
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                    <input id="my-checkbox" type="checkbox"/>
-                                                    <label for="my-checkbox"><span class="check"></span><span class="box"></span>Checkbox</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="checkbox">
-                                                    <input id="my-checkbox2" type="checkbox" disabled=""/>
-                                                    <label for="my-checkbox2"><span class="check"></span><span class="box"></span>Checkbox disabled </label>
-                                                </div>
-                                            </div>
-                                            <div class="spacer--sm"></div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <p> <strong>Toggle</strong></p>
-                                            <div class="form-group">
-                                                <div class="toggle">
-                                                    <input id="my-toggle" type="checkbox" checked="" class="cbx"/>
-                                                    <label for="my-toggle" class="lbl"></label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="toggle">
-                                                    <input id="my-toggle2" type="checkbox" disabled="" class="cbx"/>
-                                                    <label for="my-toggle2" class="lbl"></label>
-                                                </div>
-                                            </div>
-                                            <div class="spacer--sm"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card__footer"></div>
-                            </div>
+                            
                         {% endblock %}
                         </div>
                     </div>
                     <!-- / Inner -->
                 </div>
                 <!-- / Content -->
-                <!-- Hub -->
-                <div class="dashboard__hub">
-                    <div class="dashboard__hub-scroll">
-                        <div class="hub">
-                            <ul class="hub__filters">
-                                <li class="active"><a href="#" class="hub__filter active">All</a></li>
-                                <li><a href="#" data-filter="email" class="hub__filter">Emails</a></li>
-                                <li><a href="#" data-filter="agenda" class="hub__filter">Agenda</a></li>
-                                <li><a href="#" data-filter="notification" class="hub__filter">Alerts</a></li>
-                                <li><a href="#" data-filter="chat" class="hub__filter">Chat</a></li>
-                            </ul>
-                            <ul class="hub__inner">
-                                <li class="hub__entry hub__entry--email">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--email"><i class="material-icons">&#xE0BE;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">John Doe</span><span class="hub__entry-excerpt">Ad regiis carpento oppidum mandato agebatur nihi...</span><span class="hub__entry-time">5 minutes ago</span></li>
-                                    </ul>
-                                </li>
-                                <li class="hub__entry hub__entry--agenda">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--agenda"><i class="material-icons">&#xE616;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">Meeting with Daniel</span><span class="hub__entry-excerpt">Bellatores porrigitur gentes nec</span><span class="hub__entry-time">14 minutes ago</span></li>
-                                    </ul>
-                                </li>
-                                <li class="hub__entry hub__entry--notification">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--notification"><i class="material-icons">&#xE7F4;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">New purchase</span><span class="hub__entry-excerpt">Suae rapidi praefectus ad mitigabat vel ad fluminis</span><span class="hub__entry-time">18 minutes ago</span></li>
-                                    </ul>
-                                </li>
-                                <li class="hub__entry hub__entry--chat">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--chat"><i class="material-icons">&#xE0B7;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">Conversation with David</span><span class="hub__entry-excerpt">Ad regiis carpento oppidum mandato agebatur nihil..</span><span class="hub__entry-time">47 minutes ago</span></li>
-                                    </ul>
-                                </li>
-                                <li class="hub__entry hub__entry--email">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--email"><i class="material-icons">&#xE0BE;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">Dennis Bernard</span><span class="hub__entry-excerpt">Cautela graves aemulis sed cetera cetera...</span><span class="hub__entry-time">57 minutes ago</span></li>
-                                    </ul>
-                                </li>
-                                <li class="hub__entry hub__entry--email">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--email"><i class="material-icons">&#xE0BE;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">Jordan Wilson</span><span class="hub__entry-excerpt">Ubi velut exaggerantium pendere cruentae velut...</span><span class="hub__entry-time">1 hour ago</span></li>
-                                    </ul>
-                                </li>
-                                <li class="hub__entry hub__entry--agenda">
-                                    <ul>
-                                        <li class="hub__entry-icon hub__entry-icon--agenda"><i class="material-icons">&#xE616;</i></li>
-                                        <li class="hub__entry-information"><span class="hub__entry-title">Diner with Bill</span><span class="hub__entry-excerpt">Aliquotiens actus molliverunt quoque</span><span class="hub__entry-time">2 hours ago</span></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- / Hub -->
             </div>
             <!-- / Dashboard -->
         </div>

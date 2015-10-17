@@ -35,7 +35,7 @@
       <div class="col-xs-9">
         <input type="text" class="no-control" size="4" value="{{ dob_dd }}">/hari&nbsp;
         <input type="text" class="no-control" size="4" value="{{ dob_mm }}">/bulan&nbsp;
-        <input type="text" class="no-control" size="4" value="{{ dob_yy }}">/tahun&nbsp;
+        <input type="text" class="no-control" size="6" value="{{ dob_yy }}">/tahun&nbsp;
       </div>
     </div>
   </div>

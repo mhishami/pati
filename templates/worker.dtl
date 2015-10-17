@@ -42,7 +42,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="oid">Object Id</label>  
           <div class="col-md-4">
-          <input id="oid" name="oid" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" readonly>
+          <input id="oid" name="oid" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" disabled>
           </div>
         </div>
         {% endblock %}
