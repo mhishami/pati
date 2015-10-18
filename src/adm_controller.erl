@@ -7,6 +7,10 @@
 
 -include("pati.hrl").
 
+% -spec start_https(ranch:ref(), non_neg_integer(), ranch_ssl:opts(),
+%     cowboy_protocol:opts()) -> {ok, pid()} | {error, any()}.
+
+-spec before_filter(binary()) -> {ok, proceed} | {redirect, binary()}.
 before_filter(SessionId) ->
     %% do some checking
     Sid = session_worker:get_cookies(SessionId),
@@ -18,6 +22,11 @@ before_filter(SessionId) ->
             {ok, proceed}
     end.
 
+-spec handle_request(binary(), binary(), list(), list(), list()) -> 
+    {render, binary(), list()} | 
+    {redirect, binary()} |
+    {redirect, binary(), {any(), any()}}.
+    
 handle_request(<<"GET">>, <<>>, _, Params, _) ->
     User = get_user(Params),
     {render, <<"adm">>, [

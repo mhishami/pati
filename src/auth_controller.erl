@@ -8,9 +8,14 @@
 
 -include("pati.hrl").
 
+-spec before_filter(binary()) -> {ok, proceed} | {redirect, binary()}.
 before_filter(_) ->
     {ok, proceed}.
 
+-spec handle_request(binary(), binary(), list(), list(), list()) -> 
+    {render, binary(), list()} | 
+    {redirect, binary()} |
+    {redirect, binary(), {any(), any()}}.
 handle_request(<<"GET">>, <<"login">>, _, _, _) ->
     {render, <<"auth_login">>, []};
 
@@ -127,6 +132,7 @@ handle_request(_Method, _Action, _Args, _Params, _Req) ->
 %% ----------------------------------------------------------------------------
 %% Private funs
 %%
+-spec authenticate(binary(), map()) -> ok | error.
 authenticate(Password, Data) ->
     HashPass = web_util:hash_password(Password),
     Pass = maps:get(<<"password">>, Data),
@@ -136,6 +142,7 @@ authenticate(Password, Data) ->
         _    -> error
     end.
 
+-spec send_email(binary(), binary()) -> {ok, pid()}.
 send_email(E, Password) ->
     Email = erlang:binary_to_list(E),
     ?DEBUG("Sending email to ~p~n", [Email]),

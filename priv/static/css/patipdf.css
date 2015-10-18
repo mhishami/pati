@@ -1,0 +1,69 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+table, tr, td { margin: 0; padding: 0 }
+td { 
+  height: 40px; 
+/*  border: 1px solid #ccc;*/
+  vertical-align: top;
+}
+
+label { padding-left: 10px; }
+input { width: 280px; }
+input[type="text"] {
+  border: solid 1px #dcdcdc;
+  height: 20px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  white-space: nowrap;
+  border: solid 1px #dcdcdc;
+  width: 25px;
+  height: 15px;
+  content: "";
+  background-color: #fff;
+}
+
+textarea {
+  border: 1px solid #dcdcdc;
+  width: 300px;
+  height: 100px
+}
+
+.banner { 
+  text-align: center; 
+  background-color: #d8d8d8; 
+  font-weight: bold;
+  font-family: "Helvetica";
+  font-size: 20pt;
+  vertical-align: middle;
+}
+
+.sub-banner {
+  font-style: italic;
+  text-align: center;
+  background-color: black;
+  color: white;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.section {
+  padding: 10px;
+  background-color: #d8d8d8;
+}
+.section i { padding-left: 20px; }
+
+.pad label input[type="checkbox"] { padding-left: 150px; }
+
+.trace {
+  background-color: #FBF2EF;
+  border: 1px solid #111;
+  vertical-align: middle;
+}
+

@@ -6,8 +6,14 @@
 
 -include("pati.hrl").
 
+-spec before_filter(binary()) -> {ok, proceed} | {redirect, binary()}.
 before_filter(_) ->
     {ok, proceed}.
+
+-spec handle_request(binary(), binary(), list(), list(), list()) -> 
+    {render, binary(), list()} | 
+    {redirect, binary()} |
+    {redirect, binary(), {any(), any()}}.
 
 handle_request(<<"GET">>, _Action, _Args, Params, _Req) ->   
     ?DEBUG("Params= ~p~n", [Params]),

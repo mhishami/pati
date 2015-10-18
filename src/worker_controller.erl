@@ -4,6 +4,7 @@
 
 -include("pati.hrl").
 
+-spec before_filter(binary()) -> {ok, proceed} | {redirect, binary()}.
 before_filter(SessionId) ->
     %% do some checking
     Sid = session_worker:get_cookies(SessionId),
@@ -14,6 +15,11 @@ before_filter(SessionId) ->
         _ ->
             {ok, proceed}
     end.
+
+-spec handle_request(binary(), binary(), list(), list(), list()) -> 
+    {render, binary(), list()} | 
+    {redirect, binary()} |
+    {redirect, binary(), {any(), any()}}.
 
 handle_request(<<"GET">>, <<"new">>, _Args, Params, _) ->
     User = get_user(Params),

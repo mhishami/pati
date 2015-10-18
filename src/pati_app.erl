@@ -6,6 +6,7 @@
 -export([start/2]).
 -export([stop/1]).
 
+-spec start(any(), any()) -> any().
 start(_Type, _Args) ->
     application:start(sync),
     application:ensure_all_started(lager),
@@ -20,5 +21,6 @@ start(_Type, _Args) ->
     
 	pati_sup:start_link().
 
+-spec stop(any()) -> any().
 stop(_State) ->
 	ok.

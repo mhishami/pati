@@ -7,3 +7,5 @@ pati.d
 rel
 relx
 relx.config
+.pati.plt
+.rebar

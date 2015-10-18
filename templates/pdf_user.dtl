@@ -1,58 +1,244 @@
-{% extends "pdf_new.dtl" %}
-
-{% block content %}
-
-  <style type="text/css">
-      html, body {
-        padding-top: 0px;
-        padding-bottom: 0px;
-      }
-      .checkbox { display: inline; }
-      .inline { display: inline; }
-      .text-left { text-align: left; }
-      label { padding: 5px 5px 5px 30px; }
-      input { color: #000; background: white;}
-
-  </style>
-
-  <div class="card">
-    <div class="card__content form-group">    
-      <div class="card" style="background-color: #e0e0eb; padding-bottom: 10px;">
-        <h4 style="padding-left: 10px">A) MAKLUMAT PERIBADI PENGGUNA</h4>
-        <i style="padding-left: 30px;">(Particulars of User)</i>
-      </div>
-      <table style="width: 970px;">
-        <tbody>
-          <tr>
-            <td style="width: 15%;"><label class="control-label">Nama</label></td>
-            <td style="width: 35%;"><input type="text" class="form-control" value="{{ name }}"></td>
-            <td style="width: 15%;"><label class="control-label">Jantina</label></td>
-            <td style="width: 35%;">
-              <div class="checkbox">
-                <input type="checkbox" name="sex">
-                <label class="control-label"><span class="check"></span><span class="box"></span>
-                  Lelaki
-                </label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="sex">
-                <label class="control-label"><span class="check"></span><span class="box"></span>
-                  Perempuan
-                </label>
-              </div>
-            </td>        
-          </tr>
-
-          <tr>
-            <td style="width: 15%;"><label class="control-label">Email</label></td>
-            <td style="width: 35%;"><input type="text" class="form-control" value="{{ email }}"></td>
-            <td style="width: 15%;"><label class="control-label">Role</label></td>
-            <td style="width: 35%;"><input type="text" class="form-control" value="{{ role }}"></td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Made with Thimble</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <table width="1000px">
+    <tbody>
+      <tr class="banner">
+        <td>
+          <img src="http://placehold.it/175x80&text=Image Here" />.
+        </td>
+        <td colspan="3">
+          <h5>
+            BORANG PENDAFTARAN PATI UNTUK PEMUTIHAN
+          </h5>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="sub-banner">
+          REGISTRATION FORM FOR LEGALISATION OF ILLEGAL IMMIGRANT
+        </td>
+      </tr>
+      <tr>
+        <td class="section" colspan="4">
+          A) MAKLUMAT PERIBADI WARGA ASING<br/>
+          <i>Particulars of Immigrant</i>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"></td>"
+      </tr>
+      <tr>
+        <td style="width: 150px;"><label>Nama:</label></td>
+        <td style="width: 350px;"><input type="text"></td>
+        <td style="width: 150px;"><label>Jantina:</label></td>
+        <td style="width: 350px;">
+          <input type="checkbox"><span></span>Lelaki
+          <input type="checkbox"><span></span>Perempuan
+        </td>
+      </tr>
+      <tr>
+        <td><label>Warganegara:</label></td>
+        <td><input type="text"></td>
+        <td><label>Tarikh Lahir:</label></td>
+        <td>
+          <input type="text" style="width: 40px;"> /hari
+          <input type="text" style="width: 40px;"> /bulan
+          <input type="text" style="width: 80px;"> /tahun
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"><label>Pasport:</label></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label>Ada</label><input type="checkbox" class="padd">
+          <label>Pasport No.</label><input type="text" style="width: 200px;">
+          <label>Tiada</label><input type="checkbox" class="padd">
+        </td>
+        <td colspan="2">
+          <table>
+            <tr>
+              <td><label>Tarikh Tamat Pasport:</label></td>
+              <td><input type="text"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <table>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td colspan="4">
+                      <table>
+                        <tr>
+                          <td>Tarikh Tamat Permit:</td>
+                          <td><input type="text"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr> 
+                  <tr>
+                    <td><label>Alamat:</label></td>
+                    <td colspan="2"><textarea></textarea></td>
+                    <td>
+                      <table>
+                        <tr>
+                          <td><label>Negeri:</label></td>
+                          <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                          <td><label>Poskod:</label></td>
+                          <td><input type="text"></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label>Sektor:</label></td>
+                    <td colspan="3">
+                      <table>
+                        <tr>
+                          <td style="width: 300px;">
+                            <input type="checkbox">Perkilangan <i>(Manufacturing)</i><br>
+                            <input type="checkbox">Pertanian <i>(Agriculture)</i><br>
+                            <input type="checkbox">Perkhidmatan <i>(Services)</i><br>
+                          </td>
+                          <td style="width: 300px;">
+                            <input type="checkbox">Pertanian <i>(Agriculture)</i><br>
+                            <input type="checkbox">Perladangan <i>(Plantation)</i><br>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td colspan="3">
+                      <label>Sub-Sektor (Sub-Sector)</label>
+                      <input type="text">
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td>
+                <img src="http://placehold.it/200x200&text=Image Here" />.
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="section" colspan="4">
+          A) MAKLUMAT MAJIKAN<br/>
+          <i>Particulars of Employer</i>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4"></td>"
+      </tr>
+      <tr>
+        <td><label>Nama Majikan:</label></td>
+        <td><input type="text"></td>
+        <td colspan="2">
+          <table>
+            <tr>
+              <td><label>No. Pendaftaran Syarikat:</label></td>
+              <td><input type="text" style="width: 250px;"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Alamat Syarikat</label></td>
+        <td><textarea></textarea></td>
+        <td colspan="2">
+          <table>
+            <tr>
+              <td><label>Negeri:</label></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><label>Poskod:</label></td>
+              <td><input type="text"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Nama Pengarah:</label></td>
+        <td><input type="text"></td>
+        <td><label>Telefon No.:</label></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table>
+            <tr>
+              <td><label>Nama Pengarah Kedua:</label></td>
+              <td><input type="text"></td>
+            </tr>
+          </table>
+        </td>
+        <td><label>Telefon No.:</label></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><label>Telefon No. Syarikat:</label></td>
+        <td><input type="text"></td>
+        <td><label>Alamat Email:</label></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td colspan="4" style="border-bottom: 1px dotted #000;"></td>
+      </tr>
+      <tr>
+        <td colspan="4"><i>For Office Use Only:</i></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                <table class="trace">
+                  <tr>
+                    <td style="width: 150px;">Agent Code</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" style="width: 150px;"></td>
+                  </tr>
+                  <tr>
+                    <td>Date</td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" style="width: 150px;"></td>
+                  </tr>
+                </table>
+              </td>
+              <td>
+                <table class="trace">
+                  <tr>
+                    <td style="width: 350px; height: 124px;">Company Stamp</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td colspan="2"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

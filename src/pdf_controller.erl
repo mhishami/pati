@@ -6,9 +6,15 @@
 
 -include("pati.hrl").
 
+-spec before_filter(binary()) -> {ok, proceed} | {redirect, binary()}.
 before_filter(_) ->
     %% do some checking
     {ok, proceed}.
+
+-spec handle_request(binary(), binary(), list(), list(), list()) -> 
+    {render, binary(), list()} | 
+    {redirect, binary()} |
+    {redirect, binary(), {any(), any()}}.
 
 handle_request(<<"GET">>, <<"user">>, [Oid], _, _Req) ->   
     % ?DEBUG("Args= ~p, Params= ~p~n", [Args, Params]),
@@ -67,7 +73,7 @@ handle_request(<<"GET">>, <<"worker">>, [Oid], _, _Req) ->
     %        <<"type">> => <<"sdn bhd">>}]}
     % (pati@127.0.0.1)5> 
 
-    {render, <<"pdf_worker">>, [
+    {render, <<"pdf_user">>, [
         case proplists:get_value(<<"gender">>, Worker) of
             <<"male">> -> {sex_male, <<"X">>};
             _          -> {sex_female, <<"X">>}
