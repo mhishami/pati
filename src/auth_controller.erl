@@ -4,6 +4,8 @@
 -export ([handle_request/5]).
 -export ([before_filter/1]).
 
+-export ([send_email/2]).
+
 -include("pati.hrl").
 
 before_filter(_) ->
@@ -49,9 +51,36 @@ handle_request(<<"GET">>, <<"logout">>, _, Params, _) ->
     session_worker:del_cookies(Sid),
     {redirect, <<"/">>};
 
-handle_request(<<"GET">>, <<"register">>, _Args, _Params, _Req) ->
-    {render, <<"auth_register">>, []};
+handle_request(<<"GET">>, <<"forgot">>, _Args, _Params, _Req) ->
+    {render, <<"auth_forgot">>, []};
   
+handle_request(<<"POST">>, <<"forgot">>, _Args, Params, _Req) ->
+    {ok, PostVals} = maps:find(<<"qs_body">>, Params),
+    Email = proplists:get_value(<<"email">>, PostVals),
+
+    %% set new password
+    case mongo_worker:find_one(?DB_USER, {<<"email">>, Email}) of
+        {ok, User} ->
+            %% reset the password
+            P1 = word_util:gen_pnr(),
+            ?DEBUG("New Password= ~p~n", [P1]),
+
+            Pass = web_util:hash_password(P1),
+            mongo_worker:update(?DB_USER, User#{ <<"password">> := Pass }),
+
+            %% send email
+            send_email(Email, P1),
+
+            {render, <<"auth_login">>, [
+                {error, "Please check your email for your new password"},
+                {email, Email}
+            ]};
+        _ ->
+            {render, <<"auth_forgot">>, [
+                {error, "Sorry, no user by such email."}
+            ]}
+    end;
+
 handle_request(<<"POST">>, <<"register">>, _Args, Params, _Req) ->
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
 
@@ -106,4 +135,22 @@ authenticate(Password, Data) ->
         true -> ok;
         _    -> error
     end.
+
+send_email(E, Password) ->
+    Email = erlang:binary_to_list(E),
+    ?DEBUG("Sending email to ~p~n", [Email]),
+
+
+    gen_smtp_client:send({Email, [Email], 
+        unicode:characters_to_binary(
+            "Subject: Forgot Password\r\n" ++
+            "From: PATI Noreply <pati.noreply@gmail.com> \r\n" ++
+            "To: " ++ Email ++ " \r\n\r\n" ++
+            "Bummer! No worries, your new password: " ++ erlang:binary_to_list(Password)
+        )}, 
+        [{relay, "smtp.gmail.com"}, 
+         {ssl, true}, 
+         {username, "pati.noreply@gmail.com"}, 
+         {password, "Lupapul4k!"}]).
+
 

@@ -12,3 +12,6 @@
 -define(DB_USER, <<"pati_user">>).
 -define(DB_CO, <<"pati_co">>).
 -define(DB_WORKER, <<"pati_worker">>).
+
+-define(EMAIL, "pati.noreply@gmail.com>").
+-define(EPASS, "Lupapul4k!").

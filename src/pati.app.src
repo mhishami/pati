@@ -14,7 +14,8 @@
                     cowlib,
                     ranch,
                     mongodb,
-                    bson
+                    bson,
+                    gen_smtp
     ]},
     {mod, {pati_app, []}}
 ]}.

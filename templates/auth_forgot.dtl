@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <title>PATI - Login</title>
+        <title>PATI - Forgot Password</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:700,500,400,200,100,100italic,300,300italic" rel="stylesheet">
@@ -41,7 +41,7 @@
             <div class="login-form__wrapper">
                 <div class="card">
                     <div class="card__header card__header--padding1 bg-grey-50">
-                        <h1 class="card__title">Login form</h1>
+                        <h1 class="card__title">Forgot Password</h1>
                         <h2 class="card__subtitle">Welcome to the PATI</h2><a href="/" class="btn-fab white bg-pink-a200"><i class="material-icons">&#xE88A;</i></a>
 
                         {% if error %}
@@ -50,18 +50,14 @@
                             <strong>Warning!</strong> {{ error }}.
                         </div>      
                         {% endif %}
-
+                        
                     </div>
                     <div class="card__content">
-                        <form method="post" class="login-form" action="/auth/login">
+                        <form method="post" class="login-form" action="/auth/forgot">
                             <div class="form-group">
                                 <input type="text" placeholder="Email" name="email" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <input type="password" placeholder="Password" name="password" class="form-control">
-                            </div>
-                            <button type="submit" class="login-form__submit-btn btn btn-lg btn-block bg-blue-400 white">Login</button>
-                            <a class="btn btn-block" href="/auth/forgot">Forgot Password</a>
+                            <button type="submit" class="login-form__submit-btn btn btn-lg btn-block bg-blue-400 white">Send Password</button>
                         </form>
                     </div>
                 </div>
