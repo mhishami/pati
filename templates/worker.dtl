@@ -170,7 +170,16 @@
           <label class="col-md-4 control-label" for="passport_exp">Passport Expiry Date</label>  
           <div class="col-md-4">
           <input id="passport_exp" name="passport_exp" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" value="{{ passport_exp }}">
-          <span class="help-block">Enter your passport expiry in DD/MM/YYYY</span>  
+          <span class="help-block">Enter your passport expiry date in DD/MM/YYYY</span>  
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="permit_exp">Permit Expiry Date</label>  
+          <div class="col-md-4">
+          <input id="permit_exp" name="permit_exp" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" value="{{ permit_exp }}">
+          <span class="help-block">Enter your permit expiry date in DD/MM/YYYY</span>  
           </div>
         </div>
 

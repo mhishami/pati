@@ -73,27 +73,27 @@ handle_request(<<"GET">>, <<"worker">>, [Oid], _, _Req) ->
     %        <<"type">> => <<"sdn bhd">>}]}
     % (pati@127.0.0.1)5> 
 
-    {render, <<"pdf_user">>, [
+    {render, <<"pdf_worker">>, [
         case proplists:get_value(<<"gender">>, Worker) of
-            <<"male">> -> {sex_male, <<"X">>};
-            _          -> {sex_female, <<"X">>}
+            <<"male">> -> {sex_male, <<"checked">>};
+            _          -> {sex_female, <<"checked">>}
         end,
         case proplists:get_value(<<"passport">>, Worker) of
-            <<"yes">>  -> {pass_yes, <<"X">>};
-            _          -> {pass_no, <<"X">>}
+            <<"yes">>  -> {pass_yes, <<"checked">>};
+            _          -> {pass_no, <<"checked">>}
         end,
         case proplists:get_value(<<"sector">>, Worker) of
-            <<"Manufacturing">> -> {sect_mfg, <<"X">>};
-            <<"Agriculture">> -> {sect_agr, <<"X">>};
-            <<"Services">> -> {sect_svc, <<"X">>};
-            <<"Construction">> -> {sect_con, <<"X">>};
-            <<"Plantation">> -> {sect_plt, <<"X">>};
+            <<"Manufacturing">> -> {sect_mfg, <<"checked">>};
+            <<"Agriculture">> -> {sect_agr, <<"checked">>};
+            <<"Services">> -> {sect_svc, <<"checked">>};
+            <<"Construction">> -> {sect_con, <<"checked">>};
+            <<"Plantation">> -> {sect_plt, <<"checked">>};
             _  -> {dunno, <<"X">>}
         end,
         case proplists:get_value(<<"type">>, Company) of
-            <<"sdn bhd">>    -> {co_sdn, <<"X">>};
-            <<"bhd">>        -> {co_bhd, <<"X">>};
-            <<"enterprise">> -> {co_ent, <<"X">>}
+            <<"sdn bhd">>    -> {co_sdn, <<"checked">>};
+            <<"bhd">>        -> {co_bhd, <<"checked">>};
+            <<"enterprise">> -> {co_ent, <<"checked">>}
         end,
         {co_name, proplists:get_value(<<"name">>, Company)},
         {co_regno, proplists:get_value(<<"regno">>, Company)},

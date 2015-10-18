@@ -4,13 +4,17 @@ body {
 
 table, tr, td { margin: 0; padding: 0 }
 td { 
-  height: 40px; 
+  height: 30px; 
 /*  border: 1px solid #ccc;*/
   vertical-align: top;
 }
 
 label { padding-left: 10px; }
-input { width: 280px; }
+input { 
+  width: 280px; 
+  font-size: 12pt;
+  font-family: monospace;
+}
 input[type="text"] {
   border: solid 1px #dcdcdc;
   height: 20px;
@@ -24,15 +28,17 @@ input[type="checkbox"] {
   white-space: nowrap;
   border: solid 1px #dcdcdc;
   width: 25px;
-  height: 15px;
+  height: 11px;
   content: "";
   background-color: #fff;
 }
 
 textarea {
   border: 1px solid #dcdcdc;
-  width: 300px;
-  height: 100px
+  width: 280px;
+  height: 150px;
+  font-size: 12pt;
+  font-family: monospace;
 }
 
 .banner { 

@@ -28,7 +28,7 @@
               <td>
                 <div class="container-fluid pull-right">
                   <div class="row">
-                    <a class="btn btn-sm btn-default" href="/pdf/worker/{{ w.oid }}">PDF</a>
+                    <a class="btn btn-sm btn-default" href="/pdf/gen/worker/{{ w.oid }}">PDF</a>
                     <a class="btn btn-sm btn-success" href="/worker/edit/{{ w.oid }}">Edit</a>
                     <a class="btn btn-sm btn-danger" href="/worker/delete/{{ w.oid }}">Delete</a>
                   </div>
