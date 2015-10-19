@@ -9,8 +9,8 @@
 -spec before_filter(binary()) -> {ok, proceed} | {redirect, binary()}.
 before_filter(SessionId) ->
     %% do some checking
-    word_util:init(),
     Sid = session_worker:get_cookies(SessionId),
+    ?DEBUG("Sid= ~p~n", [Sid]),
     case Sid of
         {error, undefined} ->
             {redirect, <<"/auth/login">>};
@@ -56,41 +56,37 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
                 <<"email">> => Email,
                 <<"role">> => Role,
                 <<"password">> => web_util:hash_password(Pass2),
-                <<"oid">> => word_util:gen_pnr()
+                <<"uuid">> => uuid:gen()
             },
             mongo_worker:save(?DB_USER, User),
             {redirect, <<"/adm/users">>}
     end;
 
-handle_request(<<"GET">>, <<"edit">>, [Oid], Params, _) ->
-    % {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
-    % Id = proplists:get_value(<<"id">>, QsVals),
-
+handle_request(<<"GET">>, <<"edit">>, [UUID], Params, _) ->
     User = get_user(Params),
-    {ok, Data} = mongo_worker:find_one(?DB_USER, {<<"oid">>, Oid}),
+    {ok, Data} = mongo_worker:find_one(?DB_USER, {<<"uuid">>, UUID}),
     {ok, Name} = maps:find(<<"name">>, Data),
     {ok, Email} = maps:find(<<"email">>, Data),
-    {ok, Oid} = maps:find(<<"oid">>, Data),
-    ?DEBUG("Data= ~p~n", [Data]),
-    {render, <<"user_edit">>, [
-            {user, User}, {name, Name}, {email, Email}, {role, <<"user">>},
-            {menu_users, <<"active">>}, {oid, Oid}
-        ]};
+    {ok, Role} = maps:find(<<"role">>, Data),
 
-handle_request(<<"GET">>, <<"delete">>, [Oid], _Args, _) ->
-    % {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
-    % Id = proplists:get_value(<<"id">>, QsVals),
-    % ?DEBUG("Deleting user ~p~n", [Id]),
-    mongo_worker:delete(?DB_USER, {<<"email">>, Oid}),
-    {redirect, <<"/adm/users">>};
+    ?INFO("Editing user data for ~p~n", [Email]),
+
+    {render, <<"user_edit">>, [
+            {user, User}, {name, Name}, {email, Email}, 
+            {role, Role}, {uuid, UUID}
+        ]};
 
 handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
+    ?DEBUG("Updating user data, PostVals= ~p~n", [PostVals]),
+
     Name  = proplists:get_value(<<"name">>, PostVals),
     Email = proplists:get_value(<<"email">>, PostVals),
     Role = proplists:get_value(<<"role">>, PostVals),
     Pass1 = proplists:get_value(<<"password">>, PostVals),
     Pass2 = proplists:get_value(<<"password2">>, PostVals),
+    UUID = proplists:get_value(<<"uuid">>, PostVals),
+    ?INFO("Updating user data for ~p, uuid= ~p~n", [Email, UUID]),
 
     case Pass1 =/= Pass2 orelse Pass1 =:= <<>> orelse Pass2 =:= <<>> of
         true ->
@@ -105,14 +101,21 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
                 ]};
         false ->
             %% update password
-            {ok, User} = mongo_worker:find_one(?DB_USER, {<<"email">>, Email}),
-            User2 = User#{
+            ?INFO("Saving user data for ~p~n", [Email]),
+            {ok, User} = mongo_worker:find_one(?DB_USER, {<<"uuid">>, UUID}),
+            mongo_worker:update(?DB_USER, User#{
                     <<"password">> := web_util:hash_password(Pass2),
                     <<"name">> := Name
-                },
-            mongo_worker:update(?DB_USER, User2),
+                }),
             {redirect, <<"/adm/users">>}
     end;
+
+handle_request(<<"GET">>, <<"delete">>, [UUID], _Args, _) ->
+    % {ok, QsVals} = maps:find(<<"qs_vals">>, Params),
+    % Id = proplists:get_value(<<"id">>, QsVals),
+    % ?DEBUG("Deleting user ~p~n", [Id]),
+    mongo_worker:delete(?DB_USER, {<<"uuid">>, UUID}),
+    {redirect, <<"/adm/users">>};
 
 handle_request(_, _, _, _, _) ->
     {redirect, <<"/">>}.

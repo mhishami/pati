@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PDF Export</title>
     <link rel="stylesheet" href="/static/css/patipdf.css">
+    <link href="/static/plumo/vendor/jquery.bootgrid/dist/jquery.bootgrid.min.css" rel="stylesheet">
   </head>
   <body>
     <table width="1000px">
       <tbody>
         <tr class="banner">
           <td style="vertical-align: middle;">
-            <img src="http://placehold.it/150x75&text=Image Here" />.
+            <img class="logo" src="/static/img/myeg.png" />
           </td>
           <td colspan="3">
             <h5>
@@ -38,8 +39,8 @@
           <td style="width: 350px;"><input type="text" value="{{ name }}"></td>
           <td style="width: 150px;"><label>Jantina:</label></td>
           <td style="width: 350px;">
-            <input type="checkbox" {{ sex_male }}><span></span>Lelaki
-            <input type="checkbox" {{ sex_female }}><span></span>Perempuan
+            <input type="checkbox" name="gender" value="male"><span></span>Lelaki
+            <input type="checkbox" name="gender" value="female"><span></span>Perempuan
           </td>
         </tr>
         <tr>
@@ -57,9 +58,9 @@
         </tr>
         <tr>
           <td colspan="2">
-            <label>Ada</label><input type="checkbox" class="padd" {{ pass_yes }}>
+            <label>Ada</label><input type="checkbox" class="padd" name="passport" value="yes">
             <label>Pasport No.</label><input type="text" style="width: 200px;" value="{{ passport_no }}">
-            <label>Tiada</label><input type="checkbox" class="padd" {{ pass_no }}>
+            <label>Tiada</label><input type="checkbox" class="padd" name="passport" value="no">
           </td>
           <td colspan="2">
             <table>
@@ -108,13 +109,13 @@
                         <table>
                           <tr>
                             <td style="width: 300px;">
-                              <input type="checkbox" {{ sect_mfg }}>Perkilangan <i>(Manufacturing)</i><br>
-                              <input type="checkbox" {{ sect_agr }}>Pertanian <i>(Agriculture)</i><br>
-                              <input type="checkbox" {{ sect_svc }}>Perkhidmatan <i>(Services)</i><br>
+                              <input type="checkbox" name="sector" value="Manufacturing">Perkilangan <i>(Manufacturing)</i><br>
+                              <input type="checkbox" name="sector" value="Agriculture">Pertanian <i>(Agriculture)</i><br>
+                              <input type="checkbox" name="sector" value="Services">Perkhidmatan <i>(Services)</i><br>
                             </td>
                             <td style="width: 300px;">
-                              <input type="checkbox" {{ sect_con }}>Pembinaan <i>(Construction)</i><br>
-                              <input type="checkbox" {{ sect_plt }}>Perladangan <i>(Plantation)</i><br>
+                              <input type="checkbox" name="sector" value="Construction">Pembinaan <i>(Construction)</i><br>
+                              <input type="checkbox" name="sector" value="Plantation">Perladangan <i>(Plantation)</i><br>
                             </td>
                           </tr>
                         </table>
@@ -130,7 +131,7 @@
                   </table>
                 </td>
                 <td>
-                  <img src="http://placehold.it/200x200&text=Image Here" />.
+                  <img class="photo" src="/static/photos/{{ photo }}" />.
                 </td>
               </tr>
             </table>
@@ -148,9 +149,9 @@
         <tr>
           <td><label>Jenis Majikan:</label></td>
           <td colspan="3">
-            <input type="checkbox" {{ co_sdn }}> Sdn. Bhd.
-            <input type="checkbox" {{ co_bhd }}> Bhd
-            <input type="checkbox" {{ co_ent }}> Enterprise
+            <input type="checkbox" name="co_type" value="sdn-bhd"> Sdn. Bhd.
+            <input type="checkbox" name="co_type" value="bhd"> Bhd
+            <input type="checkbox" name="co_type" value="ent"> Enterprise
           </td>
         </tr>      
         <tr>
@@ -248,5 +249,21 @@
         </tr>
       </tbody>
     </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+          $("#state").val('{{ state }}');
+
+          // for company type
+          var $gender = "{{ gender }}";
+          $("input[name=gender][value="+$gender+"]").attr('checked', true);
+          var $passport = "{{ passport }}";
+          $("input[name=passport][value="+$passport+"]").attr('checked', true);
+          var $sector = "{{ sector }}";
+          $("input[name=sector][value="+$sector+"]").attr('checked', true);
+          var $co_type = "{{ co_type }}";
+          $("input[name=co_type][value="+$co_type+"]").attr('checked', true);
+      });
+    </script>
   </body>
 </html>

@@ -19,16 +19,15 @@
           <tbody>
             {% for u in users %}
             <tr>
-              <td>{{ u.oid }}</td>
+              <td>{{ u.uuid }}</td>
               <td>{{ u.name }}</td>
               <td>{{ u.email }}</td>
               <td>{{ u.role }}</td>
               <td>
                 <div class="container-fluid pull-right">
                   <div class="row">
-                    <a class="btn btn-sm btn-default" href="/pdf/gen/user/{{ u.oid }}">PDF</a>
-                    <a class="btn btn-sm btn-success" href="/user/edit/{{ u.oid }}">Edit</a>
-                    <a class="btn btn-sm btn-danger" href="/user/delete/{{ u.email }}">Delete</a>
+                    <a class="btn btn-sm btn-success" href="/user/edit/{{ u.uuid }}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/user/delete/{{ u.uuid }}">Delete</a>
                   </div>
                 </div>
               </td>

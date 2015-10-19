@@ -16,7 +16,7 @@ before_filter(SessionId) ->
             {ok, proceed}
     end.
 
--spec handle_request(binary(), binary(), list(), list(), list()) -> 
+-spec handle_request(binary(), binary(), list(), list(), Req::cowboy_req:req()) -> 
     {render, binary(), list()} | 
     {redirect, binary()} |
     {redirect, binary(), {any(), any()}}.
@@ -28,11 +28,10 @@ handle_request(<<"GET">>, <<"new">>, _Args, Params, _) ->
 
     {render, <<"worker_new">>, [
         {user, User},
-        {companies, web_util:maps_to_list(Cos)},
-        {menu_workers, <<"active">>}
+        {companies, web_util:maps_to_list(Cos)}
     ]};
 
-handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
+handle_request(<<"POST">>, <<"new">>, _Args, Params, _Req) ->
     ?DEBUG("Saving new worker, Params= ~p~n", [Params]),
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
     User = get_user(Params),
@@ -55,8 +54,8 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
             {render, <<"worker_new">>, [
                 {user, User},
                 {companies, web_util:maps_to_list(Cos)},
-                {error, <<"Please check values for Employer, State, Nationality, Sector">>},
-                {menu_workers, <<"active">>} | PostVals
+                {error, <<"Please check values for Employer, State, Nationality, Sector">>} |
+                PostVals
             ]};
 
         _ ->
@@ -64,44 +63,47 @@ handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
 
             %% save the worker data
             Worker = maps:from_list(PostVals),
-            mongo_worker:save(?DB_WORKER, Worker#{ <<"oid">> => word_util:gen_pnr() }),
+            mongo_worker:save(?DB_WORKER, Worker#{ <<"uuid">> => uuid:gen() }),
 
             {redirect, <<"/adm/workers">>}
     end;
 
-handle_request(<<"GET">>, <<"edit">>, [Oid], Params, _) ->
+handle_request(<<"GET">>, <<"edit">>, [UUID], Params, _) ->
     User = get_user(Params),
     % {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
     % RegNo = proplists:get_value(<<"id">>, PostVals),
 
     % ?DEBUG("Co RegNo= ~p~n", [RegNo]),
-    {ok, Worker} = mongo_worker:find_one(?DB_WORKER, {<<"oid">>, Oid}),
+    {ok, Worker} = mongo_worker:find_one(?DB_WORKER, {<<"uuid">>, UUID}),
+    ?DEBUG("Editing worker, data= ~p~n", [Worker]),
     {ok, Cos} = mongo_worker:find(?DB_CO, {}),
     W = web_util:map_to_list(Worker),
 
     {render, <<"worker_edit">>, [
-        case proplists:get_value(<<"gender">>, W) of
-            <<"male">> -> {sex_male, <<"checked">>};
-            _          -> {sex_female, <<"checked">>}
-        end,
-        case proplists:get_value(<<"passport">>, W) of
-            <<"yes">> -> {pass_yes, <<"checked">>};
-            _         -> {pass_no, <<"checked">>}
-        end,
         {user, User},
         {companies, web_util:maps_to_list(Cos)},        
         {menu_workers, <<"active">>} | W
     ]};
 
-handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
+handle_request(<<"POST">>, <<"update">>, _Args, Params, _Req) ->
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
     User = get_user(Params),
+    ?DEBUG("Worker update, PostVals= ~p~n", [PostVals]),
 
     Nationality = proplists:get_value(<<"nationality">>, PostVals),
     State = proplists:get_value(<<"state">>, PostVals),
     Employer = proplists:get_value(<<"employer">>, PostVals),
     Sector = proplists:get_value(<<"sector">>, PostVals),
-    Oid = proplists:get_value(<<"oid">>, PostVals),
+    UUID = proplists:get_value(<<"uuid">>, PostVals),
+
+    %% save the photo if any
+    % ?DEBUG("Preparing for saving photos, Req= ~p~n", [Req]),
+    % {ok, Headers, Req2} = cowboy_req:part(Req),
+    % {ok, Data, _Req3} = cowboy_req:part_body(Req2),
+    % {file, <<"photo">>, Filename, ContentType, _TE}
+    %     = cow_multipart:form_data(Headers),
+    % ?INFO("Received file ~p of content-type ~p as follow:~n~p~n~n",
+    %     [Filename, ContentType, Data]),
 
     case State =:= <<"--">> orelse 
          Nationality =:= <<"--">> orelse 
@@ -111,7 +113,7 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
             %% ok, error in forms
             {ok, Cos} = mongo_worker:find(?DB_CO, {}),
             ?DEBUG("Error in req values, Cos= ~p~n", [Cos]),
-            {render, <<"worker_new">>, [
+            {render, <<"worker_edit">>, [
                 {user, User},
                 {companies, web_util:maps_to_list(Cos)},
                 {error, <<"Please check values for Employer, State, Nationality, Sector">>},
@@ -122,8 +124,7 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
             %% save the data
 
             %% save the worker data
-            ?DEBUG("Updating worker data, Oid =~p~n", [Oid]),
-            {ok, W} = mongo_worker:find_one(?DB_WORKER, {<<"oid">>, Oid}),
+            {ok, W} = mongo_worker:find_one(?DB_WORKER, {<<"uuid">>, UUID}),
             ?DEBUG("W= ~p~n", [W]),
 
             Worker = maps:from_list(PostVals),
@@ -134,8 +135,40 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
             {redirect, <<"/adm/workers">>}
     end;
 
-handle_request(<<"GET">>, <<"delete">>, [Oid], _, _) ->
-    mongo_worker:delete(?DB_WORKER, {<<"oid">>, Oid}),
+handle_request(<<"GET">>, <<"delete">>, [UUID], _, _) ->
+    mongo_worker:delete(?DB_WORKER, {<<"uuid">>, UUID}),
+    {redirect, <<"/adm/workers">>};
+
+handle_request(<<"GET">>, <<"upload">>, [Oid], Params, _) ->
+    User = get_user(Params),
+    {render, <<"upload">>, [
+        {user, User}, {oid, Oid}
+    ]};
+
+handle_request(<<"POST">>, <<"upload">>, [<<"do">>, UUID], Params, _Req) ->  
+    ?DEBUG("Processing photo upload...~n", []),  
+    {ok, [Upload]} = maps:find(<<"files">>, Params),
+
+    {ok, Type} = maps:find(<<"content-type">>, Upload),
+    {ok, Data} = maps:find(<<"data">>, Upload),
+
+    %% save the file
+    % os:cmd("mkdir -p " ++ code:priv_dir(pati) ++ "/static/photos"),
+    Filename =  case Type of
+                    <<"image/jpeg">> -> 
+                        << UUID/binary, <<".jpg">>/binary >>;
+                    <<"image/png">> -> 
+                        << UUID/binary, <<".png">>/binary >>
+                end,
+
+    file:write_file(code:priv_dir(pati) ++ "/static/photos/" ++ 
+        erlang:binary_to_list(Filename), Data),
+
+    %% update user data
+    {ok, Worker} = mongo_worker:find_one(?DB_WORKER, {<<"uuid">>, UUID}),
+    mongo_worker:update(?DB_WORKER, Worker#{ <<"photo">> => Filename}),
+
+    ?DEBUG("Photo= ~p, Type= ~p~n", [Filename, Type]),
     {redirect, <<"/adm/workers">>};
 
 handle_request(_, _, _, _, _) ->
@@ -146,3 +179,12 @@ get_user(Params) ->
         {ok, User} -> User;
         _          -> undefined
     end.
+
+% multipart(Req) ->
+%     case cowboy_req:part(Req) of
+%         {ok, _Headers, Req2} ->
+%             {ok, _Body, Req3} = cowboy_req:part_body(Req2),
+%             multipart(Req3);
+%         {done, Req2} ->
+%             Req2
+%     end.

@@ -13,7 +13,6 @@
       </div>      
       {% endif %}
 
-
       <form class="form-horizontal" method="post" action="{{ action }}">
         <fieldset>
           <!-- Form Name -->
@@ -24,7 +23,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="oid">Object Id</label>  
             <div class="col-md-4">
-            <input id="oid" name="oid" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" disabled>
+            <input id="uuid" name="uuid" type="text" placeholder="UUID" class="form-control input-md" required="" value="{{ uuid }}" readonly>
             </div>
           </div>
           {% endblock %}
@@ -76,8 +75,8 @@
           <div class="form-group">
             <label class="col-md-4 control-label" for="submit"></label>
             <div class="col-md-8">
-              <button type="submit" id="submit" name="submit" class="btn btn-primary">{% block button %}{% endblock %}</button>
-              <button type="submit" id="cancel" name="cancel" onclick="window.location.href='/adm/users'; return false;" class="btn btn-default">Cancel</button>
+              <button type="submit" class="btn btn-primary">{% block button %}{% endblock %}</button>
+              <button type="submit" onclick="window.location.href='/adm/users'; return false;" class="btn btn-default">Cancel</button>
             </div>
           </div>
         </fieldset>

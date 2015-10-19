@@ -25,43 +25,25 @@ before_filter(SessionId) ->
 handle_request(<<"GET">>, <<"new">>, _Args, Params, _) ->
     User = get_user(Params),
     {render, <<"co_new">>, [
-        {user, User},
-        {menu_cos, <<"active">>}
+        {user, User}
     ]};
 
 handle_request(<<"POST">>, <<"new">>, _Args, Params, _) ->
     {ok, PostVals} = maps:find(<<"qs_body">>, Params),
 
-    % Type = proplists:get_value(<<"type">>, PostVals),
-    % Name = proplists:get_value(<<"name">>, PostVals),
-    % RegNo = proplists:get_value(<<"regno">>, PostVals),
-    % Address = proplists:get_value(<<"address">>, PostVals),
-    % Postcode = proplists:get_value(<<"postcode">>, PostVals),
-    % State = proplists:get_value(<<"state">>, PostVals),
-    % Phone = proplists:get_value(<<"phone">>, PostVals),
-    % Email = proplists:get_value(<<"email">>, PostVals),
-
     Company = maps:from_list(PostVals),
-    mongo_worker:save(?DB_CO, Company#{ <<"oid">> => word_util:gen_pnr() }),
+    mongo_worker:save(?DB_CO, Company#{ <<"uuid">> => uuid:gen() }),
     {redirect, <<"/adm/cos">>};
 
-handle_request(<<"GET">>, <<"edit">>, [Oid], Params, _) ->
+handle_request(<<"GET">>, <<"edit">>, [UUID], Params, _) ->
     User = get_user(Params),
     % {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
     % RegNo = proplists:get_value(<<"id">>, PostVals),
 
     % ?DEBUG("Co RegNo= ~p~n", [RegNo]),
-    {ok, Company} = mongo_worker:find_one(?DB_CO, {<<"oid">>, Oid}),
-    {ok, Type} = maps:find(<<"type">>, Company),
+    {ok, Company} = mongo_worker:find_one(?DB_CO, {<<"uuid">>, UUID}),
     {render, <<"co_edit">>, [
-        {user, User},
-        case Type of
-            <<"bhd">> -> {check_bhd, <<"checked">>};
-            <<"sdn bhd">> -> {check_sdnbhd, <<"checked">>};
-            <<"enterprise">> -> {check_ent, <<"checked">>}
-        end,                
-        {menu_cos, <<"active">>}|
-        web_util:map_to_list(Company)
+        {user, User} | web_util:map_to_list(Company)
     ]};
 
 handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
@@ -88,11 +70,6 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
             {render, <<"co_edit">>, [
                 {user, User},
                 {error, <<"Please select state">>},
-                case Type of
-                    <<"bhd">> -> {check_bhd, <<"checked">>};
-                    <<"sdn bhd">> -> {check_sdnbhd, <<"checked">>};
-                    <<"enterprise">> -> {check_ent, <<"checked">>}
-                end,                
                 {menu_cos, <<"active">>}|
                 web_util:map_to_list(Company)
             ]};
@@ -115,12 +92,12 @@ handle_request(<<"POST">>, <<"update">>, _Args, Params, _) ->
             {redirect, <<"/adm/cos">>}
     end;
 
-handle_request(<<"GET">>, <<"delete">>, [Oid], _, _) ->
+handle_request(<<"GET">>, <<"delete">>, [UUID], _, _) ->
     % {ok, PostVals} = maps:find(<<"qs_vals">>, Params),
     % Id = proplists:get_value(<<"id">>, PostVals),
 
     % ?DEBUG("Deleting Company ~p~n", [Id]),
-    mongo_worker:delete(?DB_CO, {<<"oid">>, Oid}),
+    mongo_worker:delete(?DB_CO, {<<"uuid">>, UUID}),
     {redirect, <<"/adm/cos">>};
 
 handle_request(_, _, _, _, _) ->

@@ -73,3 +73,16 @@ textarea {
   vertical-align: middle;
 }
 
+img.photo {
+  width: 200px;
+  height: 200px;
+  max-height: 200px;
+  max-width: 200px;
+  border: 1px solid #111;
+}
+
+img.logo {
+  width: 153px;
+  height: 80px;
+}
+

@@ -25,35 +25,29 @@
         {% block new_co %}
         <!-- Text input-->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="name">Object Id</label>  
+          <label class="col-md-4 control-label" for="uuid">Object Id</label>  
           <div class="col-md-4">
-          <input id="name" name="name" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ oid }}" disabled>
+          <input id="uuid" name="uuid" type="text" placeholder="Object Id" class="form-control input-md" required="" value="{{ uuid }}" readonly>
           </div>
         </div>
         {% endblock %}
 
-        <!-- Multiple Radios -->
         <div class="form-group">
-          <label class="col-md-4 control-label" for="radios">Company Type</label>
+          <label class="col-md-4 control-label" for="type">Company Type</label>
           <div class="col-md-4">
-          <div class="radio">
-            <label for="radios-0">
-              <input type="radio" name="type" id="radios-0" value="bhd" {{ check_bhd }}>
-              Berhad
-            </label>
-          </div>
-          <div class="radio">
-            <label for="radios-1">
-              <input type="radio" name="type" id="radios-1" value="sdn bhd" {{ check_sdnbhd }}>
-              Sdn Bhd
-            </label>
-          </div>
-          <div class="radio">
-            <label for="radios-2">
-              <input type="radio" name="type" id="radios-2" value="enterprise" {{ check_ent }}>
-              Enterprise
-            </label>
-          </div>
+            <div class="form-group">
+              <div class="radios">
+                <label for="bhd">
+                  <input id="bhd" type="radio" name="type" value="bhd"><span class="outer"><span class="inner"></span></span>Berhad
+                </label>
+                <label for="sdn">
+                  <input id="sdn" type="radio" name="type" value="sdn-bhd"><span class="outer"><span class="inner"></span></span>Sdn Bhd
+                </label>
+                <label for="ent">
+                  <input id="ent" type="radio" name="type" value="ent"><span class="outer"><span class="inner"></span></span>Enterprise
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -96,24 +90,24 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="state">State</label>
           <div class="col-md-4">
-            <select id="state" name="state" class="selectpicker form-control" selected="{{ state }}">
-              <option value="--">--</option>
-              <option value="Johor">Johor</option>
-              <option value="Kedah">Kedah</option>
-              <option value="Kelantan">Kelantan</option>
-              <option value="Melaka">Melaka</option>
-              <option value="Negeri Sembilan">Negeri Sembilan</option>
-              <option value="Pahang">Pahang</option>
-              <option value="Perak">Perak</option>
-              <option value="Perlis">Perlis</option>
-              <option value="Pulau Pinang">Pulau Pinang</option>
-              <option value="Sabah">Sabah</option>
-              <option value="Sarawak">Sarawak</option>
-              <option value="Selangor">Selangor</option>
-              <option value="Terengganu">Terengganu</option>
-              <option value="WP Kuala Lumpur">WP Kuala Lumpur</option>
-              <option value="WP Labuan">WP Labuan</option>
-              <option value="WP Putrajaya">WP Putrajaya</option>
+            <select id="state" name="state" class=" form-control" selected="{{ state }}">
+              <option value='--'>--</option>
+              <option value='Johor'>Johor</option>
+              <option value='Kedah'>Kedah</option>
+              <option value='Kelantan'>Kelantan</option>
+              <option value='Melaka'>Melaka</option>
+              <option value='Negeri Sembilan'>Negeri Sembilan</option>
+              <option value='Pahang'>Pahang</option>
+              <option value='Perak'>Perak</option>
+              <option value='Perlis'>Perlis</option>
+              <option value='Pulau Pinang'>Pulau Pinang</option>
+              <option value='Sabah'>Sabah</option>
+              <option value='Sarawak'>Sarawak</option>
+              <option value='Selangor'>Selangor</option>
+              <option value='Terengganu'>Terengganu</option>
+              <option value='WP Kuala Lumpur'>WP Kuala Lumpur</option>
+              <option value='WP Labuan'>WP Labuan</option>
+              <option value='WP Putrajaya'>WP Putrajaya</option>
             </select>
           </div>
         </div>
@@ -189,4 +183,16 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript">
+    $(function() {
+        $("#state").val('{{ state }}');
+
+        // for company type
+        var $type = "{{ type }}";
+        $("input[name=type][value="+$type+"]").attr('checked', true);
+    });
+  </script>
 {% endblock %}
